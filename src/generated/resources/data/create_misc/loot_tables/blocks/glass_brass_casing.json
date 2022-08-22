@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "create_misc:glass_casing"
+          "name": "create_misc:glass_brass_casing"
         }
       ],
       "conditions": [

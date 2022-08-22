@@ -1,4 +1,6 @@
 {
-  "block.create_misc.glass_casing": "bu\u0131s\u0250\u0186 ss\u0250\u05DF\u2141",
+  "block.create_misc.glass_andesite_casing": "bu\u0131s\u0250\u0186 \u01DD\u0287\u0131s\u01DDpu\u2C6F ss\u0250\u05DF\u2141",
+  "block.create_misc.glass_brass_casing": "bu\u0131s\u0250\u0186 ss\u0250\u0279\u15FA ss\u0250\u05DF\u2141",
+  "block.create_misc.glass_copper_casing": "bu\u0131s\u0250\u0186 \u0279\u01DDddo\u0186 ss\u0250\u05DF\u2141",
   "itemGroup.create_misc": "\u0254s\u0131W \u01DD\u0287\u0250\u01DD\u0279\u0186"
 }

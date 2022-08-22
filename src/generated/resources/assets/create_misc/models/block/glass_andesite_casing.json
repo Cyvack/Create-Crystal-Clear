@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "create_misc:block/glass_casing"
+    "all": "create_misc:block/glass_andesite_casing"
   }
 }

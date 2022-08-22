@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 public class MiscCreativeTab {
 	public static final CreativeModeTab MISC_TAB = new CreativeModeTab("create_misc") {
 		@Override
-		public ItemStack makeIcon() {return ModBlocks.GLASS_CASING.asStack();}
+		public ItemStack makeIcon() {return ModBlocks.GLASS_BRASS_CASING.asStack();}
 	};
 	private static final CreateRegistrate REGISTRATE = Create_Misc.registrate().creativeModeTab(() -> MISC_TAB, "Create Misc");
 }
