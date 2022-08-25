@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "create_misc:block/glass_casing/clear_glass_brass_casing",
+    "end": "create_misc:block/glass_casing/clear_glass_brass_casing"
+  }
+}

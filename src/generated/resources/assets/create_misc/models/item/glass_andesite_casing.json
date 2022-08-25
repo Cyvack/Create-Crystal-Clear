@@ -1,3 +1,7 @@
 {
-  "parent": "create_misc:block/glass_andesite_casing"
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "create_misc:block/glass_casing/glass_andesite_casing",
+    "end": "create_misc:block/glass_casing/glass_andesite_casing"
+  }
 }

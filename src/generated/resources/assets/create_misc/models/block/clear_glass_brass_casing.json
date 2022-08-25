@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "create_misc:block/glass_casing/clear_glass_brass_casing"
+  }
+}
