@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "create_crystal_clear:block/encased_shaft/block_andesite_glass_casing",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y": {
+      "model": "create_crystal_clear:block/encased_shaft/block_andesite_glass_casing",
+      "uvlock": true
+    },
+    "axis=z": {
+      "model": "create_crystal_clear:block/encased_shaft/block_andesite_glass_casing",
+      "x": 90,
+      "y": 180,
+      "uvlock": true
+    }
+  }
+}

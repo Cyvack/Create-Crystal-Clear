@@ -3,7 +3,7 @@ modLoader="javafml"
 loaderVersion="[40,)"
 license="All rights reserved"
 [[mods]]
-modId= "create_misc"
+modId= "create_crystal_clear"
 version="0.1"
 displayName="Create: Misc"
 logoFile="create_misc.png"
@@ -11,21 +11,21 @@ description='''
 Just a mod that adds miscellaneous stuff to create
 '''
 
-[[dependencies.create_misc]]
+[[dependencies.create_crystal_clear]]
     modId="forge"
     mandatory=true
     versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.create_misc]]
+[[dependencies.create_crystal_clear]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.create_misc]]
+[[dependencies.create_crystal_clear]]
 modId="create"
 mandatory=true
 versionRange="[0.5.0.d,)"

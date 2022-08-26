@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "create_misc:glass_andesite_casing",
-    "create_misc:glass_brass_casing",
-    "create_misc:glass_copper_casing",
-    "create_misc:clear_glass_andesite_casing",
-    "create_misc:clear_glass_brass_casing",
-    "create_misc:clear_glass_copper_casing"
+    "create_crystal_clear:andesite_glass_casing",
+    "create_crystal_clear:brass_glass_casing",
+    "create_crystal_clear:copper_glass_casing",
+    "create_crystal_clear:andesite_clear_glass_casing",
+    "create_crystal_clear:brass_clear_glass_casing",
+    "create_crystal_clear:copper_clear_glass_casing"
   ]
 }
