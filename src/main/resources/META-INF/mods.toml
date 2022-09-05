@@ -1,14 +1,14 @@
 
 modLoader="javafml"
 loaderVersion="[40,)"
-license="All rights reserved"
+license="MIT"
 [[mods]]
 modId= "create_crystal_clear"
-version="0.1"
-displayName="Create: Misc"
-logoFile="create_misc.png"
+version="0.01"
+displayName="Create: Crystal Clear"
+logoFile="logo.png"
 description='''
-Just a mod that adds miscellaneous stuff to create
+The ultimate Glass Casing Experience
 '''
 
 [[dependencies.create_crystal_clear]]
