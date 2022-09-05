@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "create_crystal_clear:block/glass_casing/andesite_glass_casing"
+    "all": "create_crystal_clear:block/andesite_glass_casing"
   }
 }

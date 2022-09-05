@@ -19,7 +19,6 @@ public class Create_Crystal_Clear {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModBlocks.register();
-        ModTileEntities.register();
 
         MinecraftForge.EVENT_BUS.register(this);
     }

@@ -1,9 +1,0 @@
-{
-  "required": true,
-  "package": "com.cyvack.create_crystal_clear",
-  "compatibilityLevel": "JAVA_8",
-  "refmap": "create_crystal_clear.refmap.json",
-  "mixins": [
-  ],
-  "minVersion": "0.8"
-}

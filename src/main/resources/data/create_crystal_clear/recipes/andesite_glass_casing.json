@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:andesite_casing"
+    },
+    {
+      "item": "create:framed_glass"
+    }
+  ],
+  "results": [
+    {
+      "item": "create_crystal_clear:andesite_glass_casing"
+    }
+  ]
+}
