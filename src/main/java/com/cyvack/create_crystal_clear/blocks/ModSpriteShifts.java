@@ -1,5 +1,6 @@
-package com.cyvack.create_crystal_clear;
+package com.cyvack.create_crystal_clear.blocks;
 
+import com.cyvack.create_crystal_clear.Create_Crystal_Clear;
 import com.simibubi.create.foundation.block.connected.AllCTTypes;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
 import com.simibubi.create.foundation.block.connected.CTSpriteShifter;
@@ -13,12 +14,18 @@ public class ModSpriteShifts {
 	public static final CTSpriteShiftEntry
 			ANDESITE_GLASS_CASING = omni("andesite_glass_casing"),
 			BRASS_GLASS_CASING = omni("brass_glass_casing"),
-			COPPER_GLASS_CASING = omni("copper_glass_casing");
+			COPPER_GLASS_CASING = omni("copper_glass_casing"),
+			STEEL_GLASS_CASING = omni("steel_glass_casing");
 
+	//Clear Glass Casings
 	public static final CTSpriteShiftEntry
 			ANDESITE_CLEAR_GLASS_CASING = omni("andesite_clear_glass_casing"),
 			BRASS_CLEAR_GLASS_CASING = omni("brass_clear_glass_casing"),
 			COPPER_CLEAR_GLASS_CASING = omni("copper_clear_glass_casing");
+
+	//Tinted Glass Casings
+	public static  final CTSpriteShiftEntry
+			STEEL_TINTED_GLASS_CASING = omni("steel_tinted_glass_casing");
 
 	//////////////////////
 

@@ -105,6 +105,16 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
         maven {
+            //CURSE
+            name "Cursemaven"
+            url "https://cursemaven.com"
+            content {
+                includeGroup "curse.maven"
+            }
+        }
+
+        maven {
+            //CREATE
             name = 'tterrag maven'
             url = 'https://maven.tterrag.com/'
         }
@@ -118,14 +128,20 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    //CREATE
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:all") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
-
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
+    //ALLOYED
+    implementation fg.deobf("curse.maven:alloyed-564792:3943197")
+
+    //JEI
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
+    //MIXINS
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     testAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
