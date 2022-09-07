@@ -1,0 +1,11 @@
+{
+  "block.create_crystal_clear.andesite_clear_glass_casing": "安山岩通透玻璃机壳",
+  "block.create_crystal_clear.andesite_glass_casing": "安山岩玻璃机壳",
+  "block.create_crystal_clear.brass_clear_glass_casing": "黄铜通透玻璃机壳",
+  "block.create_crystal_clear.brass_glass_casing": "黄铜玻璃机壳",
+  "block.create_crystal_clear.copper_clear_glass_casing": "铜制通透玻璃机壳",
+  "block.create_crystal_clear.copper_glass_casing": "铜制玻璃机壳",
+  "block.create_crystal_clear.steel_glass_casing": "钢制玻璃机壳",
+  "block.create_crystal_clear.steel_tinted_glass_casing": "钢制遮光玻璃机壳",
+  "itemGroup.create_crystal_clear": "机械动力：晶莹剔透"
+}
