@@ -7,7 +7,7 @@ import com.cyvack.create_crystal_clear.blocks.ModSpriteShifts;
 import com.cyvack.create_crystal_clear.blocks.TintedGlassCasing;
 import com.simibubi.create.foundation.block.connected.SimpleCTBehaviour;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.entry.BlockEntry;
+import com.simibubi.create.repack.registrate.util.entry.BlockEntry;
 
 import static com.cyvack.create_crystal_clear.data.BlockBuilders.glasscasing;
 import static com.cyvack.create_crystal_clear.data.BlockBuilders.tintedglasscasing;

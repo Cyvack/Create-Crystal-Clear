@@ -4,11 +4,11 @@ loaderVersion="[40,)"
 license="MIT"
 [[mods]]
 modId= "create_crystal_clear"
-version="0.01"
+version="0.0.1-0.5.c"
 displayName="Create: Crystal Clear"
 logoFile="logo.png"
 description='''
-The ultimate Glass Casing Experience
+The ultimate Glass Casing Experience, backported to 0.5.c
 '''
 
 [[dependencies.create_crystal_clear]]
@@ -28,6 +28,6 @@ The ultimate Glass Casing Experience
 [[dependencies.create_crystal_clear]]
 modId="create"
 mandatory=true
-versionRange="[0.5.0.d,)"
+versionRange="[0.5.0c]"
 ordering="NONE"
 side="BOTH"
