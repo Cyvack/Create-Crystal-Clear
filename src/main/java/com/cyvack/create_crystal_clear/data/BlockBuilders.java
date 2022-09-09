@@ -6,7 +6,7 @@ import com.cyvack.create_crystal_clear.blocks.TintedGlassCasing;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.block.connected.ConnectedTextureBehaviour;
 import com.simibubi.create.foundation.data.*;
-import com.tterrag.registrate.util.entry.BlockEntry;
+import com.simibubi.create.repack.registrate.util.entry.BlockEntry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.entity.EntityType;

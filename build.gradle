@@ -9,7 +9,7 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath "org.parchmentmc:librarian:${librarian_version}"
-        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
+        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
     }
 }
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -20,8 +20,6 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
-
-
 version = '1.0'
 group = 'com.cyvack.create_crystal_clear' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'create_crystal_clear'
@@ -129,13 +127,16 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    //CREATE
-    implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:all") { transitive = false }
-    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
-    compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
+    // Rolled back to 0.5.c and 0.6.4
+    //CREATE, FLYWHEEL & REGISTRATE
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation fg.deobf("com.simibubi.create:Create:mc${create_version}") // Create
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:${flywheel_version}") // Flywheel
+
+    // Rolled back to 0.5.c version
     //ALLOYED
-    implementation fg.deobf("curse.maven:alloyed-564792:3943197")
+    implementation fg.deobf("curse.maven:alloyed-564792:3871942")
 
     //JEI
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
@@ -161,7 +162,8 @@ jar {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "create_crystal_clearsareus",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs": "create_crystal_clear.mixins.json"
         ])
     }
 }

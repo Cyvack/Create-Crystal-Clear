@@ -3,7 +3,7 @@ package com.cyvack.create_crystal_clear;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.blocks.compat.AlloyedCompatBlocks;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import com.simibubi.create.repack.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
