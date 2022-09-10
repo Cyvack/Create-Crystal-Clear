@@ -1,7 +1,0 @@
-{
-	"parent": "create_crystal_clear:block/encased_shaft/item",
-	"textures": {
-		"casing": "create_crystal_clear:block/glass_casing/andesite_glass_casing",
-		"opening": "create:block/gearbox"
-	}
-}

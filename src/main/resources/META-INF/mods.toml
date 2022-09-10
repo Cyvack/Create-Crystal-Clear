@@ -4,7 +4,7 @@ loaderVersion="[40,)"
 license="MIT"
 [[mods]]
 modId= "create_crystal_clear"
-version="0.01"
+version="0.1a"
 displayName="Create: Crystal Clear"
 logoFile="logo.png"
 description='''

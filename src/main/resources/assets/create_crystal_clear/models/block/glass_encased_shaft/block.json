@@ -1,0 +1,161 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"1": "#opening",
+		"particle": "#casing"
+	},
+	"elements": [
+		{
+			"name": "OuterRim1",
+			"from": [0, 15, 0],
+			"to": [16, 16, 2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 15, 1]},
+			"faces": {
+				"south": {"uv": [0, 0, 16, 1], "texture": "#1", "cullface": "south"},
+				"up": {"uv": [0, 0, 16, 2], "texture": "#1", "cullface": "up"}
+			}
+		},
+		{
+			"name": "OuterRim2",
+			"from": [0, 15, 2],
+			"to": [2, 16, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 15, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 1], "texture": "#1", "cullface": "east"},
+				"up": {"uv": [2, 2, 0, 14], "rotation": 180, "texture": "#1", "cullface": "up"}
+			}
+		},
+		{
+			"name": "Core",
+			"from": [2, 15, 2],
+			"to": [14, 15, 14],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 15, 8]},
+			"faces": {
+				"up": {"uv": [2, 2, 14, 14], "texture": "#1", "cullface": "up"}
+			}
+		},
+		{
+			"name": "OuterRim3",
+			"from": [14, 15, 2],
+			"to": [16, 16, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15, 15, 8]},
+			"faces": {
+				"west": {"uv": [0, 0, 16, 1], "texture": "#1", "cullface": "west"},
+				"up": {"uv": [14, 2, 16, 14], "texture": "#1", "cullface": "up"}
+			}
+		},
+		{
+			"name": "OuterRim4",
+			"from": [0, 15, 14],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 15, 15]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#1",  "cullface": "north"},
+				"up": {"uv": [0, 16, 16, 14], "rotation": 180, "texture": "#1", "cullface": "up"}
+			}
+		},
+		{
+			"name": "OuterRim1",
+			"from": [0, 0, 14],
+			"to": [16, 1, 16],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 15, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "rotation": 180, "texture": "#1",  "cullface": "north"},
+				"down": {"uv": [0, 0, 16, 2], "texture": "#1", "cullface": "down"}
+			}
+		},
+		{
+			"name": "OuterRim2",
+			"from": [0, 0, 2],
+			"to": [2, 1, 14],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 15, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 1], "rotation": 180, "texture": "#1", "cullface": "east"},
+				"down": {"uv": [2, 2, 0, 14], "rotation": 180, "texture": "#1", "cullface": "down"}
+			}
+		},
+		{
+			"name": "Core",
+			"from": [2, 1, 2],
+			"to": [14, 1, 14],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 15, 8]},
+			"faces": {
+				"down": {"uv": [2, 2, 14, 14], "texture": "#1", "cullface": "down"}
+			}
+		},
+		{
+			"name": "OuterRim3",
+			"from": [14, 0, 2],
+			"to": [16, 1, 14],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 15, 8]},
+			"faces": {
+				"west": {"uv": [0, 0, 16, 1], "rotation": 180, "texture": "#1",  "cullface": "west"},
+				"down": {"uv": [14, 2, 16, 14], "texture": "#1", "cullface": "down"}
+			}
+		},
+		{
+			"name": "OuterRim4",
+			"from": [0, 0, 0],
+			"to": [16, 1, 2],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 15, 8]},
+			"faces": {
+				"south": {"uv": [0, 0, 16, 1], "rotation": 180, "texture": "#1", "cullface": "south"},
+				"down": {"uv": [0, 16, 16, 14], "rotation": 180, "texture": "#1", "cullface": "down"}
+			}
+		},
+		{
+			"name": "WestWall",
+			"from": [0, 0, 0],
+			"to": [0, 16, 16],
+			"faces": {
+				"west": {"uv": [0, 0, 16, 16], "texture": "#casing",  "cullface": "west"}
+			}
+		},
+		{
+			"name": "SouthWall",
+			"from": [0, 0, 16],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 8, 8]},
+			"faces": {
+				"south": {"uv": [0, 0, 16, 16], "texture": "#casing", "cullface": "south"}
+			}
+		},
+		{
+			"name": "NorthWall",
+			"from": [0, 0, 0],
+			"to": [16, 16, 0],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#casing",  "cullface": "north"}
+			}
+		},
+		{
+			"name": "EastWall",
+			"from": [16, 0, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 8, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#casing", "cullface": "east"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "Top",
+			"origin": [8, 15, 15],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		},
+		{
+			"name": "Bottom",
+			"origin": [8, 15, 15],
+			"color": 0,
+			"children": [5, 6, 7, 8, 9]
+		},
+		10,
+		11,
+		12,
+		13
+	]
+}

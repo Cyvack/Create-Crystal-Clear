@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.cyvack.create_crystal_clear.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "chefarm.refmap.json",
+  "mixins": [
+    "ShaftMixin"
+
+
+
+
+  ],
+  "minVersion": "0.8"
+}
