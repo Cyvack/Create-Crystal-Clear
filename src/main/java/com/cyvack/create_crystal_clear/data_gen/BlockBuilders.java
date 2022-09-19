@@ -85,19 +85,19 @@ public class BlockBuilders {
 		//Entry
 		public static  BlockEntry<TintedGlassCasing> tintedglasscasing(String name, Supplier<ConnectedTextureBehaviour> behaviour){
 			return REGISTRATE.block(name, TintedGlassCasing::new)
-					.onRegister(connectedTextures(behaviour))
-					.addLayer(() -> RenderType::translucent)
-					.initialProperties(() -> Blocks.TINTED_GLASS)
-					.loot(BlockLoot::dropWhenSilkTouch)
-					.blockstate((c, p) -> BlockStateGen.cubeAll(c, p, "", c.getName()))
-					.tag(AllTags.AllBlockTags.CASING.tag)
+				.onRegister(connectedTextures(behaviour))
+				.addLayer(() -> RenderType::translucent)
+				.initialProperties(() -> Blocks.TINTED_GLASS)
+				.loot(BlockLoot::dropWhenSilkTouch)
+				.blockstate((c, p) -> BlockStateGen.cubeAll(c, p, "", c.getName()))
+				.tag(AllTags.AllBlockTags.CASING.tag)
 
-					.item()
-					.tag(AllTags.AllItemTags.CASING.tag)
-					.model((c, p) -> p.cubeColumn(c.getName(), p.modLoc("block/" + c.getName()), p.modLoc("block/" + c.getName())))
+				.item()
+				.tag(AllTags.AllItemTags.CASING.tag)
+				.model((c, p) -> p.cubeColumn(c.getName(), p.modLoc("block/" + c.getName()), p.modLoc("block/" + c.getName())))
 
-					.build()
-					.register();
+				.build()
+				.register();
 		}
 
 	//Glass Encased Shafts
@@ -127,26 +127,25 @@ public class BlockBuilders {
 		}
 
 	//Glass Encased Cogwheels
-
 		//Entry
 		public static BlockEntry<GlassEncasedCogwheel> glassEncasedCogwheel(String casingType, Boolean large, Boolean clear, NonNullFunction<Properties, GlassEncasedCogwheel> factory){
 			String name = clear? casingType+"_clear" : casingType;
 			return !large?
-					//small cog
-					REGISTRATE
-					.block(name+"_glass_encased_cogwheel", factory)
-					.transform(BlockBuilders.glassencasedCogwheel(casingType, clear,
-							()-> ModSpriteShifts.omni(name+"_glass_casing")))
-					.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(ModSpriteShifts.omni(name+"_glass_casing"),
-							Couple.create(ModSpriteShifts.vertical("encased_cogwheels/" + casingType +"_encased_cogwheel_side"),
-									ModSpriteShifts.horizontal("encased_cogwheels/" + casingType +"_encased_cogwheel_side")))))
-					.register() :
-					//Large Cog
-					REGISTRATE
-							.block(name+ "_glass_encased_large_cogwheel", factory)
-							.transform(BlockBuilders.glassencasedLargeCogwheel(casingType, clear,
-									() -> ModSpriteShifts.omni(name+"_glass_casing")))
-							.register();
+				//small cog
+				REGISTRATE
+				.block(name+"_glass_encased_cogwheel", factory)
+				.transform(BlockBuilders.glassencasedCogwheel(casingType, clear,
+						()-> ModSpriteShifts.omni(name+"_glass_casing")))
+				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(ModSpriteShifts.omni(name+"_glass_casing"),
+						Couple.create(ModSpriteShifts.vertical("encased_cogwheels/" + casingType +"_encased_cogwheel_side"),
+						ModSpriteShifts.horizontal("encased_cogwheels/" + casingType +"_encased_cogwheel_side")))))
+				.register() :
+				//Large Cog
+				REGISTRATE
+				.block(name+ "_glass_encased_large_cogwheel", factory)
+				.transform(BlockBuilders.glassencasedLargeCogwheel(casingType, clear,
+						() -> ModSpriteShifts.omni(name+"_glass_casing")))
+				.register();
 		}
 
 		//Builders
@@ -158,7 +157,7 @@ public class BlockBuilders {
 		public static <B extends GlassEncasedCogwheel, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassencasedLargeCogwheel(
 				String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift) {
 			return b -> glassEncasedCogwheelBase(b, casing, clear, casingShift, AllBlocks.COGWHEEL::get, true)
-					.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(casingShift.get())));
+				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(casingShift.get())));
 		}
 
 	//----------------------------//
@@ -183,33 +182,33 @@ public class BlockBuilders {
 					String suffix = (blockState.getValue(GlassEncasedCogwheel.TOP_SHAFT) ? "_top" : "")
 							+ (blockState.getValue(GlassEncasedCogwheel.BOTTOM_SHAFT) ? "_bottom" : "");
 					String modelName = c.getName() + suffix;
-					return p.models()
-							.withExistingParent(modelName, p.modLoc("block/" + blockFolder + "/block" + suffix))
-							//Normal Casing
-							.texture("casing", Create_Crystal_Clear.asResource("block/" + casing + "_casing"))
-							//Backing
-							.texture("1", getBacking(casingType))
-							//Gearbox
-							.texture(large?"3":"4", casingType.equals("andesite")? Create.asResource("block/gearbox"):getGearbox(casingType+"_"))
-							//Side Casing
-							.texture("side", getSiding(casingType, encasedSuffix));
+				return p.models()
+					.withExistingParent(modelName, p.modLoc("block/" + blockFolder + "/block" + suffix))
+					//Normal Casing
+					.texture("casing", Create_Crystal_Clear.asResource("block/" + casing + "_casing"))
+					//Backing
+					.texture("1", getBacking(casingType))
+					//Gearbox
+					.texture(large?"3":"4", casingType.equals("andesite")? Create.asResource("block/gearbox"):getGearbox(casingType+"_"))
+					//Side Casing
+					.texture("side", getSiding(casingType, encasedSuffix));
 				}, false))
 				.item()
 				.model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + blockFolder + "/item"))
-						.texture("casing", Create_Crystal_Clear.asResource("block/" + casing + "_casing"))
-						//Backing
-						.texture("1", getBacking(casingType))
-						//Gearbox
-						.texture(large?"3":"4", casingType.equals("andesite")? Create.asResource("block/gearbox"):getGearbox(casingType+"_"))
-						//Side Casing
-						.texture("side", getSiding(casingType, encasedSuffix)))
+					.texture("casing", Create_Crystal_Clear.asResource("block/" + casing + "_casing"))
+					//Backing
+					.texture("1", getBacking(casingType))
+					//Gearbox
+					.texture(large?"3":"4", casingType.equals("andesite")? Create.asResource("block/gearbox"):getGearbox(casingType+"_"))
+					//Side Casing
+					.texture("side", getSiding(casingType, encasedSuffix)))
 				.build();
 	}
 
 	private static ResourceLocation getBacking(String backing){
 			return backing.equals("andesite")? new ResourceLocation("block/stripped_spruce_log_top") :
-							backing.equals("brass") ? new ResourceLocation("block/stripped_dark_oak_log_top") :
-									Create_Crystal_Clear.asResource("block/" + backing + "_backing");
+					backing.equals("brass") ? new ResourceLocation("block/stripped_dark_oak_log_top") :
+					Create_Crystal_Clear.asResource("block/" + backing + "_backing");
 	}
 
 	private static ResourceLocation getGearbox(String opening){

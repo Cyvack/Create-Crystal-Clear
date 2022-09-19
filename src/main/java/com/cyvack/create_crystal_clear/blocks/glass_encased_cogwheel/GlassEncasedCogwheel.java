@@ -2,6 +2,7 @@ package com.cyvack.create_crystal_clear.blocks.glass_encased_cogwheel;
 
 import com.cyvack.create_crystal_clear.blocks.glass_casings.GlassCasing;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
+import com.cyvack.create_crystal_clear.blocks.glass_encased_shaft.GlassEncasedShaftBlock;
 import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.IRotate;
@@ -40,6 +41,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GlassEncasedCogwheel extends RotatedPillarKineticBlock implements ICogWheel, ITE<SimpleKineticTileEntity>, ISpecialBlockItemRequirement, ITransformableBlock {
 	public static final BooleanProperty TOP_SHAFT = BooleanProperty.create("top_shaft");
@@ -114,12 +117,6 @@ public class GlassEncasedCogwheel extends RotatedPillarKineticBlock implements I
 	public BlockEntry<GlassCasing> getCasing() {
 		return casing;
 	}
-
-//	@Override
-//	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pDirection) {
-//		return pState.getBlock() == pAdjacentBlockState.getBlock()
-//				&& pState.getValue(AXIS) == pAdjacentBlockState.getValue(AXIS);
-//	}
 
 	@Override
 	public InteractionResult onWrenched(BlockState state, UseOnContext context) {
@@ -290,10 +287,10 @@ public class GlassEncasedCogwheel extends RotatedPillarKineticBlock implements I
 	}
 
 	@SuppressWarnings("deprecation")
-	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pSide) {
-		if (!(pState.getBlock() instanceof GlassEncasedCogwheel)) return false;
-		if (!(pAdjacentBlockState.getBlock() instanceof GlassEncasedCogwheel)) return false;
-		return true;
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction side) {
+		return ((pState.getBlock() instanceof GlassEncasedCogwheel) && (pAdjacentBlockState.getBlock() instanceof GlassEncasedCogwheel));
 	}
 
 }

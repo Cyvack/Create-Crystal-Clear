@@ -34,19 +34,21 @@ public class CogwheelMixin {
 		private void Inject(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult ray, CallbackInfoReturnable<InteractionResult> cir){
 	ItemStack heldItem = player.getItemInHand(hand);
 	GlassEncasedCogwheel[] glassEncasedBlocks = isLarge
-			? new GlassEncasedCogwheel[] {  ModBlocks.ANDESITE_GLASS_ENCASED_LARGE_COGWHEEL.get(),
-											ModBlocks.BRASS_GLASS_ENCASED_LARGE_COGWHEEL.get(),
-											ModBlocks.TRAIN_GLASS_ENCASED_LARGE_COGWHEEL.get(),
-											ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_LARGE_COGWHEEL.get(),
-											ModBlocks.BRASS_CLEAR_GLASS_ENCASED_LARGE_COGWHEEL.get(),
-											ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_LARGE_COGWHEEL.get()} //Add more large cogs
+			? new GlassEncasedCogwheel[] {
+				ModBlocks.ANDESITE_GLASS_ENCASED_LARGE_COGWHEEL.get(),
+				ModBlocks.BRASS_GLASS_ENCASED_LARGE_COGWHEEL.get(),
+				ModBlocks.TRAIN_GLASS_ENCASED_LARGE_COGWHEEL.get(),
+				ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_LARGE_COGWHEEL.get(),
+				ModBlocks.BRASS_CLEAR_GLASS_ENCASED_LARGE_COGWHEEL.get(),
+				ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_LARGE_COGWHEEL.get()} //Add more large cogs
 
-			: new GlassEncasedCogwheel[] {  ModBlocks.ANDESITE_GLASS_ENCASED_COGWHEEL.get(),
-											ModBlocks.BRASS_GLASS_ENCASED_COGWHEEL.get(),
-											ModBlocks.TRAIN_GLASS_ENCASED_COGWHEEL.get(),
-											ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_COGWHEEL.get(),
-											ModBlocks.BRASS_CLEAR_GLASS_ENCASED_COGWHEEL.get(),
-											ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_COGWHEEL.get()}; //Add more small cogs
+			: new GlassEncasedCogwheel[] {
+				ModBlocks.ANDESITE_GLASS_ENCASED_COGWHEEL.get(),
+				ModBlocks.BRASS_GLASS_ENCASED_COGWHEEL.get(),
+				ModBlocks.TRAIN_GLASS_ENCASED_COGWHEEL.get(),
+				ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_COGWHEEL.get(),
+				ModBlocks.BRASS_CLEAR_GLASS_ENCASED_COGWHEEL.get(),
+				ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_COGWHEEL.get()}; //Add more small cogs
 
 
 		for (GlassEncasedCogwheel glassEncasedCogwheel : glassEncasedBlocks) {

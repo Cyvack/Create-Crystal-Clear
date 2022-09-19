@@ -47,19 +47,19 @@ public class ModSpriteShifts {
 
 
 	//////////////////////
-	protected static CTSpriteShiftEntry omni(String name) {
+	public static CTSpriteShiftEntry omni(String name) {
 		return getCT(AllCTTypes.OMNIDIRECTIONAL, name);
 	}
 
-	protected static CTSpriteShiftEntry horizontal(String name) {
+	public static CTSpriteShiftEntry horizontal(String name) {
 		return getCT(AllCTTypes.HORIZONTAL, name);
 	}
 
-	protected static CTSpriteShiftEntry vertical(String name) {
+	public static CTSpriteShiftEntry vertical(String name) {
 		return getCT(AllCTTypes.VERTICAL, name);
 	}
 
-	//
+	/////
 
 	private static CTSpriteShiftEntry getCT(CTType type, String blockTextureName, String connectedTextureName) {
 		return CTSpriteShifter.getCT(type, Create_Crystal_Clear.asResource("block/" + blockTextureName), Create_Crystal_Clear.asResource("block/" + connectedTextureName + "_connected"));

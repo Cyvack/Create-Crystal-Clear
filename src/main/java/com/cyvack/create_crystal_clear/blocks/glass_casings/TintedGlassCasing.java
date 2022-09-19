@@ -20,7 +20,7 @@ public class TintedGlassCasing extends GlassBlock {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
-		return adjacentBlockState.getBlock() instanceof ConnectedGlassBlock || super.skipRendering(state, adjacentBlockState, side);
+		return ((state.getBlock() instanceof TintedGlassCasing) && (adjacentBlockState.getBlock() instanceof TintedGlassCasing));
 	}
 
 	@Override

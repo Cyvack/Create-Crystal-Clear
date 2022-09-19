@@ -18,9 +18,7 @@ public class GlassCasing extends GlassBlock {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction side) {
-		if (!(pState.getBlock() instanceof GlassCasing)) return false;
-		if (!(pAdjacentBlockState.getBlock() instanceof GlassCasing)) return false;
-		return true;
+		return ((pState.getBlock() instanceof GlassCasing) && (pAdjacentBlockState.getBlock() instanceof GlassCasing));
 	}
 
 	@Override

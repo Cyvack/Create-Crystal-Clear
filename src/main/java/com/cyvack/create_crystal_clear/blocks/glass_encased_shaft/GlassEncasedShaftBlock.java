@@ -28,6 +28,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 
 public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements ITE<KineticTileEntity>, ISpecialBlockItemRequirement {
@@ -107,18 +109,16 @@ public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements
 		return ModtileEntities.GLASS_ENCASED_SHAFT.get();
 	}
 
-	@SuppressWarnings("deprecation")
-	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pSide) {
-		if (!(pState.getBlock() instanceof GlassEncasedShaftBlock)) return false;
-		if (!(pAdjacentBlockState.getBlock() instanceof GlassEncasedShaftBlock)) return false;
-		return true;
-	}
-
 	@Override
 	public boolean shouldDisplayFluidOverlay(BlockState state, BlockAndTintGetter world, BlockPos pos, FluidState fluidState) {
 		return true;
 	}
 
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction side) {
+		return ((pState.getBlock() instanceof GlassEncasedShaftBlock) && (pAdjacentBlockState.getBlock() instanceof GlassEncasedShaftBlock));
+	}
 	@SuppressWarnings("deprecation")
 	public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
 		return 1.0F;
