@@ -121,8 +121,8 @@ dependencies {
 
 
     //RUBIDIUM AND SHADERS
-    implementation fg.deobf("curse.maven:rubidium-574856:3929515")
-    implementation fg.deobf("curse.maven:oculus-581495:3929520")
+//    implementation fg.deobf("curse.maven:rubidium-574856:3929515")
+//    implementation fg.deobf("curse.maven:oculus-581495:3929520")
 
     //MIXINS
     if (System.getProperty('idea.sync.active') != 'true') {
