@@ -2,6 +2,7 @@ package com.cyvack.create_crystal_clear;
 
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.blocks.compat.AlloyedCompatBlocks;
+import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +27,7 @@ public class Create_Crystal_Clear {
         isAlloyedLoaded = ModList.get().isLoaded("alloyed");
 
         ModBlocks.register();
+        ModtileEntities.register();
 
         //compat
         if (isAlloyedLoaded) {AlloyedCompatBlocks.register();}

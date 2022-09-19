@@ -9,7 +9,7 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath "org.parchmentmc:librarian:${librarian_version}"
-        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
+        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
     }
 }
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -36,10 +36,10 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+            arg '-mixin.config=create_crystal_clear.mixins.json'
+
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
-
             property 'forge.enabledGameTestNamespaces', 'create_crystal_clear'
 
             mods {
@@ -51,11 +51,9 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-
+            arg '-mixin.config=create_crystal_clear.mixins.json'
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
-
             property 'forge.enabledGameTestNamespaces', 'create_crystal_clear'
 
             mods {
@@ -65,30 +63,10 @@ minecraft {
             }
         }
 
-
-        gameTestServer {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-
-            property 'forge.logging.console.level', 'debug'
-
-            property 'forge.enabledGameTestNamespaces', 'create_crystal_clear'
-
-            mods {
-                create_crystal_clear {
-                    source sourceSets.main
-                }
-            }
-        }
-
         data {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', 'REGISTRIES'
-
             property 'forge.logging.console.level', 'debug'
-
             args '--mod', 'create_crystal_clear', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'create'
 
             mods {
@@ -141,13 +119,20 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
-    //MIXINS
-    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    testAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
+    //RUBIDIUM AND SHADERS
+    implementation fg.deobf("curse.maven:rubidium-574856:3929515")
+    implementation fg.deobf("curse.maven:oculus-581495:3929520")
+
+    //MIXINS
     if (System.getProperty('idea.sync.active') != 'true') {
-        annotationProcessor "org.spongepowered:mixin:0.7-SNAPSHOT:processor"
+        annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
     }
+}
+
+
+mixin {
+    add sourceSets.main, "create_crystal_clear.refmap.json"
 }
 
 
@@ -160,8 +145,9 @@ jar {
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "create_crystal_clearsareus",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Vendor"   : "create_crystal_clear",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs"            : "create_crystal_clear.mixins.json"
         ])
     }
 }
@@ -185,8 +171,3 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
-mixin {
-    add sourceSets.main, "create_crystal_clear.refmap.json"
-
-    config "create_crystal_clear.mixins.json"
-}

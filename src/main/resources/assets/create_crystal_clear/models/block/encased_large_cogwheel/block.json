@@ -1,0 +1,67 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "create_crystal_clear:block/train_casing_backing",
+		"particle": "create_crystal_clear:block/train_glass_casing",
+		"casing": "create_crystal_clear:block/train_glass_casing",
+		"side": "create_crystal_clear:block/encased_cogwheels/train_encased_cogwheel_side_connected"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 6, 16],
+			"faces": {
+				"north": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "east"},
+				"south": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "west"}
+			}
+		},
+		{
+			"from": [16, 0, 0],
+			"to": [0, 6, 16],
+			"faces": {
+				"north": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "west"},
+				"south": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [8, 13, 16, 16], "texture": "#side", "cullface": "east"}
+			}
+		},
+		{
+			"from": [0, 10, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "east"},
+				"south": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "west"}
+			}
+		},
+		{
+			"from": [16, 10, 0],
+			"to": [0, 16, 16],
+			"faces": {
+				"north": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "west"},
+				"south": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [8, 8, 16, 11], "texture": "#side", "cullface": "east"}
+			}
+		},
+		{
+			"from": [0, 10, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#casing"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 6, 16],
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#casing"}
+			}
+		}
+	]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "create_crystal_clear:block/train_glass_casing"
+  }
+}

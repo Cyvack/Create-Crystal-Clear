@@ -1,7 +1,8 @@
 package com.cyvack.create_crystal_clear.mixins;
 
 
-import com.cyvack.create_crystal_clear.GlassEncasedShaftBlock;
+import com.cyvack.create_crystal_clear.Create_Crystal_Clear;
+import com.cyvack.create_crystal_clear.blocks.glass_encased_shaft.GlassEncasedShaftBlock;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.blocks.compat.AlloyedCompatBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
@@ -25,17 +26,20 @@ import static com.simibubi.create.content.contraptions.base.RotatedPillarKinetic
 public class ShaftMixin {
 
 
-		@Inject(method = "use", at = @At(value ="INVOKE", target = "Lcom/simibubi/create/foundation/utility/placement/PlacementHelpers;get(I)Lcom/simibubi/create/foundation/utility/placement/IPlacementHelper;"), cancellable = true)
+		@Inject(method = "use", at = @At(value ="INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getItemInHand(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;"), cancellable = true)
 			private void Inject(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult ray, CallbackInfoReturnable<InteractionResult> cir){
 			ItemStack heldItem = player.getItemInHand(hand);
-			for (GlassEncasedShaftBlock glassEncasedShaftBlock : new GlassEncasedShaftBlock[]
-					{
+			GlassEncasedShaftBlock[] encasedShaft = new GlassEncasedShaftBlock[] {
 					ModBlocks.ANDESITE_GLASS_ENCASED_SHAFT.get(),
 					ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_SHAFT.get(),
 					ModBlocks.BRASS_GLASS_ENCASED_SHAFT.get(),
 					ModBlocks.BRASS_CLEAR_GLASS_ENCASED_SHAFT.get(),
-					AlloyedCompatBlocks.STEEL_GLASS_ENCASED_SHAFT.get()
-					}) {
+					ModBlocks.TRAIN_GLASS_ENCASED_SHAFT.get(),
+					ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_SHAFT.get(),
+					steelencasedShaft()
+			};
+
+			for (GlassEncasedShaftBlock glassEncasedShaftBlock : encasedShaft){
 
 				if (!glassEncasedShaftBlock.getCasing()
 						.isIn(heldItem))
@@ -48,6 +52,11 @@ public class ShaftMixin {
 						.setValue(AXIS, state.getValue(AXIS)));
 				cir.setReturnValue(InteractionResult.SUCCESS);
 			}
-
+		}
+		private GlassEncasedShaftBlock steelencasedShaft(){
+			if (Create_Crystal_Clear.isAlloyedLoaded) {
+				return AlloyedCompatBlocks.STEEL_GLASS_ENCASED_SHAFT.get();
+			}
+			return ModBlocks.ANDESITE_GLASS_ENCASED_SHAFT.get();
 		}
 }
