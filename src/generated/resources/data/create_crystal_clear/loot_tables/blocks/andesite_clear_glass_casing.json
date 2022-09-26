@@ -2,14 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "create_crystal_clear:andesite_clear_glass_casing"
-        }
-      ],
       "conditions": [
         {
           "condition": "minecraft:match_tool",
@@ -24,7 +17,14 @@
             ]
           }
         }
-      ]
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "create_crystal_clear:andesite_clear_glass_casing"
+        }
+      ],
+      "rolls": 1.0
     }
   ]
 }

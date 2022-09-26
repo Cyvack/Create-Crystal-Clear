@@ -9,6 +9,8 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class GlassCasing extends GlassBlock {
 
 	public GlassCasing(Properties p_53640_) {

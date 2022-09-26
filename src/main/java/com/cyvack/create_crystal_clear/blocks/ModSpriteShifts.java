@@ -30,18 +30,6 @@ public class ModSpriteShifts {
 	public static  final CTSpriteShiftEntry
 			STEEL_TINTED_GLASS_CASING = omni("steel_tinted_glass_casing");
 
-	//Glass Encased Cogs
-	public static final CTSpriteShiftEntry
-
-			ANDESITE_GLASS_ENCASED_COGWHEEL_SIDE = AllSpriteShifts.ANDESITE_ENCASED_COGWHEEL_SIDE,
-			BRASS_GLASS_ENCASED_COGWHEEL_SIDE = AllSpriteShifts.BRASS_ENCASED_COGWHEEL_SIDE,
-			TRAIN_GLASS_ENCASED_COGWHEEL_SIDE = vertical("encased_cogwheels/train_encased_cogwheel_side"),
-
-			//Otherside
-			ANDESITE_GLASS_ENCASED_COGWHEEL_OTHERSIDE = AllSpriteShifts.ANDESITE_ENCASED_COGWHEEL_OTHERSIDE,
-			BRASS_GLASS_ENCASED_COGWHEEL_OTHERSIDE = AllSpriteShifts.BRASS_ENCASED_COGWHEEL_OTHERSIDE,
-			TRAIN_GLASS_ENCASED_COGWHEEL_OTHERSIDE = horizontal("encased_cogwheels/train_encased_cogwheel_side");
-
 
 
 

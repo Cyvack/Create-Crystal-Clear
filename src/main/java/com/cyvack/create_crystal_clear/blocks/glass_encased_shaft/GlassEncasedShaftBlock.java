@@ -3,10 +3,12 @@ package com.cyvack.create_crystal_clear.blocks.glass_encased_shaft;
 import com.cyvack.create_crystal_clear.blocks.glass_casings.GlassCasing;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.blocks.compat.AlloyedCompatBlocks;
+import com.cyvack.create_crystal_clear.blocks.glass_encased_cogwheel.GlassEncasedCogwheel;
 import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.encased.AbstractEncasedShaftBlock;
+import com.simibubi.create.content.palettes.ConnectedGlassBlock;
 import com.simibubi.create.content.schematics.ISpecialBlockItemRequirement;
 import com.simibubi.create.content.schematics.ItemRequirement;
 import com.simibubi.create.foundation.block.ITE;
@@ -31,6 +33,8 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements ITE<KineticTileEntity>, ISpecialBlockItemRequirement {
 
@@ -114,14 +118,11 @@ public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction side) {
 		return ((pState.getBlock() instanceof GlassEncasedShaftBlock) && (pAdjacentBlockState.getBlock() instanceof GlassEncasedShaftBlock));
-	}
-	@SuppressWarnings("deprecation")
-	public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-		return 1.0F;
 	}
 
 	public boolean propagatesSkylightDown(BlockState pState, BlockGetter pReader, BlockPos pPos) {

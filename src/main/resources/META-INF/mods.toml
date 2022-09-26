@@ -1,10 +1,10 @@
 
 modLoader="javafml"
-loaderVersion="[40,)"
+loaderVersion="[43,)"
 license="MIT"
 [[mods]]
 modId= "create_crystal_clear"
-version="0.1a"
+version="0.1e"
 displayName="Create: Crystal Clear"
 logoFile="logo.png"
 description='''
@@ -14,20 +14,20 @@ The ultimate Glass Casing Experience
 [[dependencies.create_crystal_clear]]
     modId="forge"
     mandatory=true
-    versionRange="[40,)"
+    versionRange="[43,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.create_crystal_clear]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2,1.19)"
+    versionRange="[1.19.2,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.create_crystal_clear]]
 modId="create"
 mandatory=true
-versionRange="[0.5.0.d,)"
+versionRange="[0.5.0.e,)"
 ordering="NONE"
 side="BOTH"
