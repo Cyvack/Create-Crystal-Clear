@@ -17,6 +17,7 @@ public class AlloyedCompatBlocks {
 	CreateRegistrate REGISTRATE = Create_Crystal_Clear.registrate().creativeModeTab(()-> CrystalClearTab.GLASS_TAB);
 
 	public static final BlockEntry<GlassCasing>
+
 			STEEL_GLASS_CASING =
 			glasscasing("steel_glass_casing", ()-> new SimpleCTBehaviour((ModSpriteShifts.STEEL_GLASS_CASING)));
 
