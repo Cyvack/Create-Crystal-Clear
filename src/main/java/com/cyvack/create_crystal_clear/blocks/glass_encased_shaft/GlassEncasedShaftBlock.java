@@ -2,7 +2,7 @@ package com.cyvack.create_crystal_clear.blocks.glass_encased_shaft;
 
 import com.cyvack.create_crystal_clear.blocks.glass_casings.GlassCasing;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
-import com.cyvack.create_crystal_clear.blocks.compat.AlloyedCompatBlocks;
+import com.cyvack.create_crystal_clear.compat.blocks.AlloyedCompatBlocks;
 import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;

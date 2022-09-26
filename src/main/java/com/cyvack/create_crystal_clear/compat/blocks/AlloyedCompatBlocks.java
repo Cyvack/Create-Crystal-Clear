@@ -1,4 +1,4 @@
-package com.cyvack.create_crystal_clear.blocks.compat;
+package com.cyvack.create_crystal_clear.compat.blocks;
 
 import com.cyvack.create_crystal_clear.Create_Crystal_Clear;
 import com.cyvack.create_crystal_clear.blocks.CrystalClearTab;
