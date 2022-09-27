@@ -4,11 +4,11 @@ loaderVersion="[40,)"
 license="MIT"
 [[mods]]
 modId= "create_crystal_clear"
-version="0.1e"
+version="0.1.1e"
 displayName="Create: Crystal Clear"
 logoFile="logo.png"
 authors="Cyvack"
-description='''The ultimate Glass Casing Experience.'''
+description='''The ultimate Glass Experience.'''
 
 [[dependencies.create_crystal_clear]]
     modId="forge"
