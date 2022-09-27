@@ -113,7 +113,7 @@ dependencies {
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
     //ALLOYED
-    //implementation fg.deobf("curse.maven:alloyed-564792:3943197")
+    implementation fg.deobf("curse.maven:alloyed-564792:3943197")
 
     //JEI
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")

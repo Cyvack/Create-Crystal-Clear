@@ -17,5 +17,6 @@ public class AlloyedTileEntities {
 			.validBlocks(AlloyedCompatBlocks.STEEL_GLASS_ENCASED_SHAFT)
 			.renderer(()-> ShaftRenderer::new)
 			.register();
+
 	public static void register(){};
 }

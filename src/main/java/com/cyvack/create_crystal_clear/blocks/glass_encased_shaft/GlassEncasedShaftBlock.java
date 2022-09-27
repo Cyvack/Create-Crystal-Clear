@@ -3,6 +3,7 @@ package com.cyvack.create_crystal_clear.blocks.glass_encased_shaft;
 import com.cyvack.create_crystal_clear.blocks.glass_casings.GlassCasing;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.compat.blocks.AlloyedCompatBlocks;
+import com.cyvack.create_crystal_clear.compat.tile_entities.AlloyedTileEntities;
 import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
@@ -56,6 +57,7 @@ public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements
 	public static GlassEncasedShaftBlock trainclearglass(Properties properties){
 		return new GlassEncasedShaftBlock(properties, ModBlocks.TRAIN_CLEAR_GLASS_CASING);
 	}
+
 	public static GlassEncasedShaftBlock steelglass(Properties properties) {
 		return new GlassEncasedShaftBlock(properties, AlloyedCompatBlocks.STEEL_GLASS_CASING);
 	}
@@ -106,6 +108,11 @@ public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements
 
 	@Override
 	public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
+
+		if (this.getCasing() == AlloyedCompatBlocks.STEEL_GLASS_CASING){
+			return AlloyedTileEntities.STEEL_GLASS_ENCASED_SHAFT.get();
+		}
+
 		return ModtileEntities.GLASS_ENCASED_SHAFT.get();
 	}
 

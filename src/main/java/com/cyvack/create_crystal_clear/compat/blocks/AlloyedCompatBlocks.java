@@ -24,6 +24,7 @@ public class AlloyedCompatBlocks {
 			STEEL_TINTED_GLASS_CASING =
 			tintedglasscasing("steel_tinted_glass_casing", () -> new SimpleCTBehaviour((ModSpriteShifts.STEEL_TINTED_GLASS_CASING)));
 
+
 	public static final BlockEntry<GlassEncasedShaftBlock>
 			STEEL_GLASS_ENCASED_SHAFT = glassEncasedShaft("steel", false, GlassEncasedShaftBlock::steelglass);
 
