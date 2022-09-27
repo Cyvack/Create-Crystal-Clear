@@ -3,6 +3,7 @@ package com.cyvack.create_crystal_clear.mixins;
 
 import com.cyvack.create_crystal_clear.blocks.glass_encased_cogwheel.GlassEncasedCogwheel;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
+import com.cyvack.create_crystal_clear.blocks.glass_encased_shaft.GlassEncasedShaftBlock;
 import com.simibubi.create.content.contraptions.base.IRotate;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.CogWheelBlock;
@@ -21,6 +22,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.simibubi.create.content.contraptions.base.RotatedPillarKineticBlock.AXIS;
 
@@ -50,7 +54,6 @@ public class CogwheelMixin {
 				ModBlocks.BRASS_CLEAR_GLASS_ENCASED_COGWHEEL.get(),
 				ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_COGWHEEL.get()}; //Add more small cogs
 
-
 		for (GlassEncasedCogwheel glassEncasedCogwheel : glassEncasedBlocks) {
 			if (!glassEncasedCogwheel.getCasing()
 					.isIn(heldItem))
@@ -77,6 +80,7 @@ public class CogwheelMixin {
 			KineticTileEntity.switchToBlockState(world, pos, encasedState);
 			cir.setReturnValue(InteractionResult.SUCCESS);
 		}
+
 	}
 
 @Shadow

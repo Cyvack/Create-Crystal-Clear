@@ -2,6 +2,7 @@ package com.cyvack.create_crystal_clear.tile_entities;
 
 import com.cyvack.create_crystal_clear.Create_Crystal_Clear;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
+import com.cyvack.create_crystal_clear.compat.blocks.AlloyedCompatBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.elementary.SimpleKineticTileEntity;
 import com.simibubi.create.content.contraptions.relays.encased.EncasedCogInstance;
@@ -22,7 +23,8 @@ public class ModtileEntities {
 			.instance(()-> ShaftInstance::new, false)
 			.validBlocks(ModBlocks.ANDESITE_GLASS_ENCASED_SHAFT, ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_SHAFT,
 						 ModBlocks.BRASS_GLASS_ENCASED_SHAFT, ModBlocks.BRASS_CLEAR_GLASS_ENCASED_SHAFT,
-					     ModBlocks.TRAIN_GLASS_ENCASED_SHAFT, ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_SHAFT)
+					     ModBlocks.TRAIN_GLASS_ENCASED_SHAFT, ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_SHAFT,
+						 AlloyedCompatBlocks.STEEL_GLASS_ENCASED_SHAFT)
 			.renderer(()-> ShaftRenderer::new)
 			.register();
 

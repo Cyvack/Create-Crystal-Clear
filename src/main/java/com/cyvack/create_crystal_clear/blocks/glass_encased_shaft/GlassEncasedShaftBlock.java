@@ -3,7 +3,6 @@ package com.cyvack.create_crystal_clear.blocks.glass_encased_shaft;
 import com.cyvack.create_crystal_clear.blocks.glass_casings.GlassCasing;
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.compat.blocks.AlloyedCompatBlocks;
-import com.cyvack.create_crystal_clear.compat.tile_entities.AlloyedTileEntities;
 import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
@@ -35,7 +34,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements ITE<KineticTileEntity>, ISpecialBlockItemRequirement {
 
-	private BlockEntry<com.cyvack.create_crystal_clear.blocks.glass_casings.GlassCasing> GlassCasing;
+	private BlockEntry<GlassCasing> GlassCasing;
 
 	public static GlassEncasedShaftBlock andesiteglass(Properties properties) {
 		return new GlassEncasedShaftBlock(properties, ModBlocks.ANDESITE_GLASS_CASING);
@@ -108,11 +107,6 @@ public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements
 
 	@Override
 	public BlockEntityType<? extends KineticTileEntity> getTileEntityType() {
-
-		if (this.getCasing() == AlloyedCompatBlocks.STEEL_GLASS_CASING){
-			return AlloyedTileEntities.STEEL_GLASS_ENCASED_SHAFT.get();
-		}
-
 		return ModtileEntities.GLASS_ENCASED_SHAFT.get();
 	}
 
@@ -126,6 +120,7 @@ public class GlassEncasedShaftBlock extends AbstractEncasedShaftBlock implements
 	public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction side) {
 		return ((pState.getBlock() instanceof GlassEncasedShaftBlock) && (pAdjacentBlockState.getBlock() instanceof GlassEncasedShaftBlock));
 	}
+
 	@SuppressWarnings("deprecation")
 	public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
 		return 1.0F;

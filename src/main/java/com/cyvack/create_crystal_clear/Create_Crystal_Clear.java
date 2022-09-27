@@ -2,7 +2,6 @@ package com.cyvack.create_crystal_clear;
 
 import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.compat.blocks.AlloyedCompatBlocks;
-import com.cyvack.create_crystal_clear.compat.tile_entities.AlloyedTileEntities;
 import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -32,10 +31,7 @@ public class Create_Crystal_Clear {
 
 
         //compat
-        if (isAlloyedLoaded) {
             AlloyedCompatBlocks.register();
-            AlloyedTileEntities.register();
-        }
     }
 
 

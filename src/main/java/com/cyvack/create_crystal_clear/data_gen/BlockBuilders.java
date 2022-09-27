@@ -20,6 +20,7 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Couple;
+import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -125,6 +126,7 @@ public class BlockBuilders {
 					.model(AssetLookup.customBlockItemModel("glass_encased_shaft", "item_" + casing))
 					.build();
 		}
+
 
 	//Glass Encased Cogwheels
 		//Entry

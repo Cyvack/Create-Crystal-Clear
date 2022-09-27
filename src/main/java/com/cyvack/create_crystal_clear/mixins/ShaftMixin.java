@@ -31,7 +31,7 @@ public class ShaftMixin {
 		@Inject(method = "use", at = @At(value ="INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getItemInHand(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;"), cancellable = true)
 			private void Inject(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult ray, CallbackInfoReturnable<InteractionResult> cir){
 			ItemStack heldItem = player.getItemInHand(hand);
-			ArrayList<GlassEncasedShaftBlock> encasedShaft3 = new ArrayList<>() {
+			ArrayList<GlassEncasedShaftBlock> encasedShaft = new ArrayList<>() {
 				{
 					add(ModBlocks.ANDESITE_GLASS_ENCASED_SHAFT.get());
 					add(ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_SHAFT.get());
@@ -43,7 +43,7 @@ public class ShaftMixin {
 				}
 			};
 
-			for (GlassEncasedShaftBlock glassEncasedShaftBlock : encasedShaft3) {
+			for (GlassEncasedShaftBlock glassEncasedShaftBlock : encasedShaft) {
 
 				if (!glassEncasedShaftBlock.getCasing()
 						.isIn(heldItem))
