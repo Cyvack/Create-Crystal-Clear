@@ -1,32 +1,34 @@
+modLoader = "javafml"
+loaderVersion = "${loader_range}"
+license = "MIT"
+issueTrackerURL = "https://github.com/${github_project}/issues"
 
-modLoader="javafml"
-loaderVersion="[40,)"
-license="MIT"
 [[mods]]
-modId= "create_crystal_clear"
-version="0.1.2e"
-displayName="Create: Crystal Clear"
-logoFile="logo.png"
-authors="Cyvack"
-description='''The ultimate Glass Experience.'''
+modId = "create_crystal_clear"
+version = "${version}"
+displayName = "Create: Crystal Clear"
+displayURL="https://github.com/${github_project}"
+logoFile = "logo.png"
+authors = "Cyvack"
+description = '''The ultimate Glass Experience.'''
 
 [[dependencies.create_crystal_clear]]
-    modId="forge"
-    mandatory=true
-    versionRange="[40,)"
-    ordering="NONE"
-    side="BOTH"
+modId = "forge"
+mandatory = true
+versionRange = "${forge_range}"
+ordering = "NONE"
+side = "BOTH"
 
 [[dependencies.create_crystal_clear]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="1.18.2"
-    ordering="NONE"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_range}"
+ordering = "NONE"
+side = "BOTH"
 
 [[dependencies.create_crystal_clear]]
-modId="create"
-mandatory=true
-versionRange="0.5.0.e"
-ordering="NONE"
-side="BOTH"
+modId = "create"
+mandatory = true
+versionRange = "${create_range}"
+ordering = "NONE"
+side = "BOTH"
