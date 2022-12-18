@@ -12,5 +12,11 @@
     {
       "item": "create_crystal_clear:steel_tinted_glass_casing"
     }
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alloyed"
+    }
   ]
 }

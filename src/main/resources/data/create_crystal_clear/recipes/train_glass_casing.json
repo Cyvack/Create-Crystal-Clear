@@ -5,12 +5,13 @@
       "item": "create:railway_casing"
     },
     {
-      "item": "create:framed_glass"
+      "item": "minecraft:glass"
     }
   ],
   "results": [
     {
       "item": "create_crystal_clear:train_glass_casing"
     }
-  ]
+  ],
+
 }
