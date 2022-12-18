@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create_crystal_clear:train_glass_casing"
+    },
+    {
+      "item": "minecraft:glass"
+    }
+  ],
+  "results": [
+    {
+      "item": "create_crystal_clear:train_clear_glass_casing"
+    }
+  ]
+}
