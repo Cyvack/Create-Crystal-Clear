@@ -2,7 +2,7 @@
   "type": "create:item_application",
   "ingredients": [
     {
-      "item": "create:framed_glass"
+      "item": "minecraft:glass"
     },
     {
       "item": "alloyed:steel_ingot"
@@ -11,6 +11,13 @@
   "results": [
     {
       "item": "create_crystal_clear:steel_glass_casing"
+    }
+  ],
+
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alloyed"
     }
   ]
 }
