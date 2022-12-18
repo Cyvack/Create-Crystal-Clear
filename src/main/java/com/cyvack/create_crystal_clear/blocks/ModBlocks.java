@@ -13,7 +13,6 @@ import static com.cyvack.create_crystal_clear.data_gen.BlockBuilders.*;
 
 public class ModBlocks {
 
-	String[] casingTypes = {"andesite", "brass", "train"};
 	private static final
 	CreateRegistrate REGISTRATE = Create_Crystal_Clear.registrate().creativeModeTab(() -> CrystalClearTab.GLASS_TAB);
 
