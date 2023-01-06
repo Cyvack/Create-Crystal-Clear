@@ -25,7 +25,8 @@ public class ModtileEntities {
 			.instance(()-> ShaftInstance::new, false)
 			.validBlocks(ModBlocks.ANDESITE_GLASS_ENCASED_SHAFT, ModBlocks.ANDESITE_CLEAR_GLASS_ENCASED_SHAFT,
 						 ModBlocks.BRASS_GLASS_ENCASED_SHAFT, ModBlocks.BRASS_CLEAR_GLASS_ENCASED_SHAFT,
-					     ModBlocks.TRAIN_GLASS_ENCASED_SHAFT, ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_SHAFT
+					     ModBlocks.TRAIN_GLASS_ENCASED_SHAFT, ModBlocks.TRAIN_CLEAR_GLASS_ENCASED_SHAFT,
+					(Create_Crystal_Clear.isAlloyedLoaded ? AlloyedCompatBlocks.STEEL_GLASS_ENCASED_SHAFT : ModBlocks.EMPTY_BLOCK)
 					     )
 			.renderer(()-> ShaftRenderer::new)
 			.register();

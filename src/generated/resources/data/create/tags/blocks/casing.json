@@ -7,6 +7,8 @@
     "create_crystal_clear:andesite_clear_glass_casing",
     "create_crystal_clear:brass_clear_glass_casing",
     "create_crystal_clear:copper_clear_glass_casing",
-    "create_crystal_clear:train_clear_glass_casing"
+    "create_crystal_clear:train_clear_glass_casing",
+    "create_crystal_clear:steel_glass_casing",
+    "create_crystal_clear:steel_tinted_glass_casing"
   ]
 }

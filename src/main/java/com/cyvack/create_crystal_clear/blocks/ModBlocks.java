@@ -4,9 +4,13 @@ import com.cyvack.create_crystal_clear.*;
 import com.cyvack.create_crystal_clear.blocks.glass_casings.GlassCasing;
 import com.cyvack.create_crystal_clear.blocks.glass_encased_cogwheel.GlassEncasedCogwheel;
 import com.cyvack.create_crystal_clear.blocks.glass_encased_shaft.GlassEncasedShaftBlock;
+import com.simibubi.create.content.contraptions.components.crusher.CrushingWheelControllerBlock;
 import com.simibubi.create.foundation.block.connected.SimpleCTBehaviour;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 
 import static com.cyvack.create_crystal_clear.data_gen.BlockBuilders.*;
 
@@ -15,6 +19,19 @@ public class ModBlocks {
 	CreateRegistrate REGISTRATE = Create_Crystal_Clear.registrate().creativeModeTab(() -> CrystalClearTab.GLASS_TAB);
 
 	//Casings
+
+	public static final BlockEntry<AirBlock> EMPTY_BLOCK =
+			REGISTRATE.block("empty_block", AirBlock::new)
+					.properties(p -> p.noOcclusion()
+					.noLootTable()
+					.air())
+					.blockstate((c, p) -> p.getVariantBuilder(c.get())
+							.forAllStatesExcept(state -> ConfiguredModel.builder()
+							.modelFile(p.models()
+							.getExistingFile(p.mcLoc("block/air")))
+							.build()))
+					.register();
+
 	public static final BlockEntry<GlassCasing>
 			ANDESITE_GLASS_CASING = glasscasing("andesite_glass_casing", () -> new SimpleCTBehaviour(ModSpriteShifts.ANDESITE_GLASS_CASING)),
 			BRASS_GLASS_CASING = glasscasing("brass_glass_casing", () -> new SimpleCTBehaviour(ModSpriteShifts.BRASS_GLASS_CASING)),
