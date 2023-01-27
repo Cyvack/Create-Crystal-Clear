@@ -4,7 +4,6 @@ import com.cyvack.create_crystal_clear.blocks.ModBlocks;
 import com.cyvack.create_crystal_clear.compat.blocks.AlloyedCompatBlocks;
 import com.cyvack.create_crystal_clear.tile_entities.ModtileEntities;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,19 +18,20 @@ public class Create_Crystal_Clear {
 
     public static final String MOD_ID = "create_crystal_clear";
     public static boolean isAlloyedLoaded = false;
-    private static final NonNullSupplier<CreateRegistrate> REGISTRATE = CreateRegistrate.lazy(MOD_ID);
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
 
     public Create_Crystal_Clear(){
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
         isAlloyedLoaded = ModList.get().isLoaded("alloyed");
 
+        REGISTRATE.registerEventListeners(eventBus);
+
         ModBlocks.register();
         ModtileEntities.register();
 
-
         //compat
-            AlloyedCompatBlocks.register();
+        AlloyedCompatBlocks.register();
     }
 
 
@@ -39,6 +39,6 @@ public class Create_Crystal_Clear {
         return new ResourceLocation(MOD_ID, path);
     }
     public static CreateRegistrate registrate() {
-        return REGISTRATE.get();
+        return REGISTRATE;
     }
 }
