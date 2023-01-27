@@ -1,6 +1,5 @@
 package com.cyvack.create_crystal_clear.blocks.glass_casings;
 
-import com.simibubi.create.content.palettes.ConnectedGlassBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockAndTintGetter;

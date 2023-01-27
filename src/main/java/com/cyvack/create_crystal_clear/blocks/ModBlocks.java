@@ -7,7 +7,6 @@ import com.cyvack.create_crystal_clear.blocks.glass_encased_shaft.GlassEncasedSh
 import com.simibubi.create.foundation.block.connected.SimpleCTBehaviour;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import net.minecraft.world.level.block.Block;
 
 import static com.cyvack.create_crystal_clear.data_gen.BlockBuilders.*;
 
