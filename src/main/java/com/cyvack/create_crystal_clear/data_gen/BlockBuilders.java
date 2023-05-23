@@ -48,6 +48,7 @@ import static com.simibubi.create.foundation.data.CreateRegistrate.connectedText
 
 public class BlockBuilders {
 
+	// Tell Registrate to create a lang entry for the item groups
 	private static final CreateRegistrate REGISTRATE = CrystalClear.REGISTRATE.creativeModeTab(() -> CrystalClearTab.MAIN_GROUP, "Crystal Clear");
 
 	private static @NotNull Properties glassProperties(Properties p) {

@@ -11,7 +11,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 public class CrystalClearBlockEntities {
-	private static final CreateRegistrate REGISTRATE = CrystalClear.REGISTRATE.creativeModeTab(() -> CrystalClearTab.MAIN_GROUP, "Crystal Clear");
+	private static final CreateRegistrate REGISTRATE = CrystalClear.REGISTRATE;
 
 	//Glass Encased Shafts
 	public static final BlockEntityEntry<KineticBlockEntity> GLASS_ENCASED_SHAFT = REGISTRATE

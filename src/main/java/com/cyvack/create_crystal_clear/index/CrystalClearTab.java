@@ -13,7 +13,4 @@ public class CrystalClearTab {
             return ModBlocks.COPPER_GLASS_CASING.asStack();
         }
     };
-
-    // Tell Registrate to create a lang entry for the item groups
-    private static final CreateRegistrate REGISTRATE = CrystalClear.REGISTRATE.creativeModeTab(() -> MAIN_GROUP, "Crystal Clear");
 }
