@@ -1,7 +1,6 @@
 package com.cyvack.create_crystal_clear.index;
 
 import com.cyvack.create_crystal_clear.CrystalClear;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
