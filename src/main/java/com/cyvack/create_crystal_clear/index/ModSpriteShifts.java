@@ -1,13 +1,13 @@
-package com.cyvack.create_crystal_clear.blocks;
+package com.cyvack.create_crystal_clear.index;
 
-import com.cyvack.create_crystal_clear.Create_Crystal_Clear;
-import com.simibubi.create.AllSpriteShifts;
+import com.cyvack.create_crystal_clear.CrystalClear;
 import com.simibubi.create.foundation.block.connected.AllCTTypes;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
 import com.simibubi.create.foundation.block.connected.CTSpriteShifter;
 import com.simibubi.create.foundation.block.connected.CTType;
-import com.simibubi.create.foundation.block.render.SpriteShiftEntry;
-import com.simibubi.create.foundation.block.render.SpriteShifter;
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 
 public class ModSpriteShifts {
@@ -49,7 +49,7 @@ public class ModSpriteShifts {
 	/////
 
 	private static CTSpriteShiftEntry getCT(CTType type, String blockTextureName, String connectedTextureName) {
-		return CTSpriteShifter.getCT(type, Create_Crystal_Clear.asResource("block/" + blockTextureName), Create_Crystal_Clear.asResource("block/" + connectedTextureName + "_connected"));
+		return CTSpriteShifter.getCT(type, CrystalClear.asResource("block/" + blockTextureName), CrystalClear.asResource("block/" + connectedTextureName + "_connected"));
 	}
 
 	private static CTSpriteShiftEntry getCT(CTType type, String blockTextureName) {
