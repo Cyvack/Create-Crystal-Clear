@@ -72,6 +72,7 @@ public class BlockBuilders {
 				.initialProperties(() -> Blocks.GLASS)
 				.properties(p -> p.sound(SoundType.GLASS))
 				.properties(BlockBehaviour.Properties::noOcclusion)
+				.properties(BlockBuilders::glassProperties)
 				.addLayer(() -> RenderType::cutout)
 				.blockstate((c, p) -> p.simpleBlock(c.get()))
 				.onRegister(connectedTextures(() -> new SimpleCTBehaviour(ctEntry)))
@@ -212,6 +213,7 @@ public class BlockBuilders {
 
 	private static <B extends RotatedPillarKineticBlock, P> BlockBuilder<B, P> glassencasedBase(BlockBuilder<B, P> b, Supplier<ItemLike> drop) {
 		return b.properties(BlockBehaviour.Properties::noOcclusion)
+				.properties(BlockBuilders::glassProperties)
 				.transform(BlockStressDefaults.setNoImpact())
 				.loot((p, lb) -> p.dropOther(lb, drop.get()));
 	}
