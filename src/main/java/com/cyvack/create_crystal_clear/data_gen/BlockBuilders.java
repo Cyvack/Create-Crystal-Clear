@@ -181,10 +181,7 @@ public class BlockBuilders {
 					//Side Casing
 					.texture("side", getSiding(casingType, encasedSuffix));
 				}, false))
-
-				//Manually register to encasing registry for now TODO: change to utilize the proper way to implement encasing once problems with current system are worked out
-				.transform(EncasingRegistry.addVariantTo(AllBlocks.COGWHEEL))
-
+				.transform(EncasingRegistry.addVariantTo( large ? AllBlocks.LARGE_COGWHEEL : AllBlocks.COGWHEEL))
 				.item()
 				.model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + blockFolder + "/item"))
 					.texture("casing", CrystalClear.asResource("block/" + casing + "_casing"))
