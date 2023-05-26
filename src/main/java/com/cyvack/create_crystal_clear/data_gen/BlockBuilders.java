@@ -5,9 +5,8 @@ import com.cyvack.create_crystal_clear.content.blocks.GlassCasing;
 import com.cyvack.create_crystal_clear.content.blocks.GlassEncasedCogwheel;
 import com.cyvack.create_crystal_clear.content.blocks.GlassEncasedShaft;
 import com.cyvack.create_crystal_clear.index.CCSpriteShifts;
-import com.cyvack.create_crystal_clear.index.CCTab;
-import com.cyvack.create_crystal_clear.index.GlassCTBehaviours.GlassEncasedCogCTBehaviour;
 import com.cyvack.create_crystal_clear.index.GlassCTBehaviours.GlassEncasedCTBehaviour;
+import com.cyvack.create_crystal_clear.index.GlassCTBehaviours.GlassEncasedCogCTBehaviour;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
@@ -19,7 +18,6 @@ import com.simibubi.create.foundation.block.connected.SimpleCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Couple;
-import com.simibubi.create.foundation.utility.CreateRegistry;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -36,7 +34,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -75,6 +72,7 @@ public class BlockBuilders {
 				.initialProperties(() -> Blocks.GLASS)
 				.properties(p -> p.sound(SoundType.GLASS))
 				.properties(BlockBehaviour.Properties::noOcclusion)
+				.properties(BlockBuilders::glassProperties)
 				.addLayer(() -> RenderType::cutout)
 				.blockstate((c, p) -> p.simpleBlock(c.get()))
 				.onRegister(connectedTextures(() -> new SimpleCTBehaviour(ctEntry)))
@@ -184,10 +182,7 @@ public class BlockBuilders {
 					//Side Casing
 					.texture("side", getSiding(casingType, encasedSuffix));
 				}, false))
-
-				//Manually register to encasing registry for now TODO: change to utilize the proper way to implement encasing once problems with current system are worked out
-				.transform(EncasingRegistry.addVariantTo(AllBlocks.COGWHEEL))
-
+				.transform(EncasingRegistry.addVariantTo( large ? AllBlocks.LARGE_COGWHEEL : AllBlocks.COGWHEEL))
 				.item()
 				.model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + blockFolder + "/item"))
 					.texture("casing", CrystalClear.asResource("block/" + casing + "_casing"))
@@ -218,6 +213,7 @@ public class BlockBuilders {
 
 	private static <B extends RotatedPillarKineticBlock, P> BlockBuilder<B, P> glassencasedBase(BlockBuilder<B, P> b, Supplier<ItemLike> drop) {
 		return b.properties(BlockBehaviour.Properties::noOcclusion)
+				.properties(BlockBuilders::glassProperties)
 				.transform(BlockStressDefaults.setNoImpact())
 				.loot((p, lb) -> p.dropOther(lb, drop.get()));
 	}
