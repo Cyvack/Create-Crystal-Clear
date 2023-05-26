@@ -32,5 +32,5 @@ side = "BOTH"
 modId="create"
 mandatory=true
 versionRange="[0.5.1.a,)"
-ordering="NONE"
+ordering="AFTER"
 side="BOTH"
