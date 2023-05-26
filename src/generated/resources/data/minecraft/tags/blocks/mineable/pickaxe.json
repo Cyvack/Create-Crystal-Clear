@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "create_crystal_clear:andesite_glass_encased_shaft",
     "create_crystal_clear:brass_glass_encased_shaft",

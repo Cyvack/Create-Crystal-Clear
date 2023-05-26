@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "create_crystal_clear:andesite_clear_glass_casing",
     "create_crystal_clear:brass_clear_glass_casing",

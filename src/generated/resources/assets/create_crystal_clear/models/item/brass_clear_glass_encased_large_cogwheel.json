@@ -1,9 +1,9 @@
 {
-  "parent": "create_crystal_clear:block/encased_cogwheel/item",
+  "parent": "create_crystal_clear:block/encased_large_cogwheel/item",
   "textures": {
-    "backing": "minecraft:block/stripped_dark_oak_log_top",
     "casing": "create_crystal_clear:block/brass_clear_glass_casing",
-    "opening": "create:block/brass_gearbox",
-    "siding": "create_crystal_clear:block/encased_cogwheels/large_brass_encased_cogwheel_side"
+    "1": "minecraft:block/stripped_dark_oak_log_top",
+    "3": "create:block/brass_gearbox",
+    "side": "create_crystal_clear:block/encased_cogwheels/brass_encased_cogwheel_side_connected"
   }
 }
