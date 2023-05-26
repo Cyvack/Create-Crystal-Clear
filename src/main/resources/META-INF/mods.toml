@@ -29,8 +29,8 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.create_crystal_clear]]
-modId = "create"
-mandatory = true
-versionRange = "${create_range}"
-ordering = "NONE"
-side = "BOTH"
+modId="create"
+mandatory=true
+versionRange="[0.5.1.a,)"
+ordering="NONE"
+side="BOTH"

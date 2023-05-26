@@ -1,7 +1,3 @@
 {
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "create_crystal_clear:block/train_clear_glass_casing",
-    "side": "create_crystal_clear:block/train_clear_glass_casing"
-  }
+  "parent": "create_crystal_clear:block/train_clear_glass_casing"
 }

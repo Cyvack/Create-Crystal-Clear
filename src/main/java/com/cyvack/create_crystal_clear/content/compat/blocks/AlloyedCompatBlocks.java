@@ -1,10 +1,5 @@
 package com.cyvack.create_crystal_clear.content.compat.blocks;
 
-import com.cyvack.create_crystal_clear.CrystalClear;
-import com.cyvack.create_crystal_clear.index.CrystalClearTab;
-import com.cyvack.create_crystal_clear.index.ModSpriteShifts;
-import com.simibubi.create.foundation.data.CreateRegistrate;
-
 public class AlloyedCompatBlocks {
 //	private static final
 //	CreateRegistrate REGISTRATE = CrystalClear.registrate().creativeModeTab(()-> CrystalClearTab.MAIN_GROUP);

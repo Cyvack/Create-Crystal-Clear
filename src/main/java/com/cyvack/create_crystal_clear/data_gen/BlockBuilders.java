@@ -1,27 +1,25 @@
 package com.cyvack.create_crystal_clear.data_gen;
 
 import com.cyvack.create_crystal_clear.CrystalClear;
-import com.cyvack.create_crystal_clear.content.blocks.glass_casings.GlassCasing;
-import com.cyvack.create_crystal_clear.content.blocks.glass_casings.TintedGlassCasing;
-import com.cyvack.create_crystal_clear.content.blocks.glass_encased_cogwheel.NewGlassEncasedCogwheelBlock;
-import com.cyvack.create_crystal_clear.content.blocks.glass_encased_shaft.NewGlassEncasedShaftBlock;
-import com.cyvack.create_crystal_clear.index.CrystalClearTab;
-import com.cyvack.create_crystal_clear.index.ModSpriteShifts;
+import com.cyvack.create_crystal_clear.content.blocks.GlassCasing;
+import com.cyvack.create_crystal_clear.content.blocks.GlassEncasedCogwheel;
+import com.cyvack.create_crystal_clear.content.blocks.GlassEncasedShaft;
+import com.cyvack.create_crystal_clear.index.CCSpriteShifts;
+import com.cyvack.create_crystal_clear.index.CCTab;
+import com.cyvack.create_crystal_clear.index.GlassCTBehaviours.GlassEncasedCogCTBehaviour;
+import com.cyvack.create_crystal_clear.index.GlassCTBehaviours.GlassEncasedCTBehaviour;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
-import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogCTBehaviour;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedShaftBlock;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
-import com.simibubi.create.foundation.block.connected.ConnectedTextureBehaviour;
+import com.simibubi.create.foundation.block.connected.SimpleCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
-import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Couple;
+import com.simibubi.create.foundation.utility.CreateRegistry;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -29,27 +27,28 @@ import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
 import static com.simibubi.create.foundation.data.BlockStateGen.axisBlock;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
+import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
 public class BlockBuilders {
 
 	// Tell Registrate to create a lang entry for the item groups
-	private static final CreateRegistrate REGISTRATE = CrystalClear.REGISTRATE.creativeModeTab(() -> CrystalClearTab.MAIN_GROUP, "Crystal Clear");
+	private static final CreateRegistrate REGISTRATE = CrystalClear.registrate();
 
 	private static @NotNull Properties glassProperties(Properties p) {
 		return p.isValidSpawn(BlockBuilders::never)
@@ -68,108 +67,95 @@ public class BlockBuilders {
 	}
 
 	//Glass Casings
-		//Entry
-		public static BlockEntry<GlassCasing> glasscasing(String name, Supplier<ConnectedTextureBehaviour> behaviour, Supplier<Block> resultingClearCasing) {
-			return REGISTRATE.block(name, p -> new GlassCasing(p, resultingClearCasing))
-					.onRegister(connectedTextures(behaviour))
-					.addLayer(() -> RenderType::cutout)
-					.initialProperties(() -> Blocks.GLASS)
-//					.loot(BlockLoot::dropWhenSilkTouch)
-					.blockstate((c, p) -> BlockStateGen.cubeAll(c, p, "", c.getName()))
-					.tag(AllTags.AllBlockTags.CASING.tag)
-					.item()
-					.tag(AllTags.AllItemTags.CASING.tag)
-					.model((c, p) -> p.cubeColumn(c.getName(), p.modLoc("block/" + c.getName()), p.modLoc("block/" + c.getName())))
-					.build()
-					.register();
-		}
+	public static BlockEntry<GlassCasing> glassCasing(String name, boolean clear) {
+		String newName = !clear ? name + "_glass_casing" : name + "_clear_glass_casing";
+		CTSpriteShiftEntry ctEntry = CCSpriteShifts.omni(newName);
 
-	//Tinted Glass Casings
-		//Entry
-		public static  BlockEntry<TintedGlassCasing> tintedglasscasing(String name, Supplier<ConnectedTextureBehaviour> behaviour){
-			return REGISTRATE.block(name, TintedGlassCasing::new)
-				.onRegister(connectedTextures(behaviour))
-				.addLayer(() -> RenderType::translucent)
-				.initialProperties(() -> Blocks.TINTED_GLASS)
-//				.loot(BlockLoot::dropWhenSilkTouch)
-				.blockstate((c, p) -> BlockStateGen.cubeAll(c, p, "", c.getName()))
+		return REGISTRATE.block(newName, GlassCasing::new)
+				.initialProperties(() -> Blocks.GLASS)
+				.properties(p -> p.sound(SoundType.GLASS))
+				.properties(BlockBehaviour.Properties::noOcclusion)
+				.addLayer(() -> RenderType::cutout)
+				.blockstate((c, p) -> p.simpleBlock(c.get()))
+				.onRegister(connectedTextures(() -> new SimpleCTBehaviour(ctEntry)))
 				.tag(AllTags.AllBlockTags.CASING.tag)
-
 				.item()
 				.tag(AllTags.AllItemTags.CASING.tag)
-				.model((c, p) -> p.cubeColumn(c.getName(), p.modLoc("block/" + c.getName()), p.modLoc("block/" + c.getName())))
-
 				.build()
 				.register();
-		}
+	}
 
-	//Glass Encased Shafts
+	/**
+	 * TODO: make this not create 200000000 different block files in the same file
+	 * @param casing String representative of desired casing type
+	 * @param clear Whether this block is clear glass
+	 * @param factory Base factory for block
+	 */
+	public static BlockEntry<GlassEncasedShaft> glassEncasedShaft(String casing, Boolean clear, NonNullFunction<Properties, GlassEncasedShaft> factory){
+		String newName = casing + (!clear ? "_glass_encased_shaft" : "_clear_glass_encased_shaft");
 
-		//Entry
-		public static BlockEntry<NewGlassEncasedShaftBlock> glassEncasedShaft(String casingType, Boolean clear, NonNullFunction<Properties, NewGlassEncasedShaftBlock> factory){
-			String name = clear?  casingType + "_clear":casingType;
-			return 	REGISTRATE
-					.block(name + "_glass_encased_shaft", factory)
-					.transform(glassEncasedShaftBuilder(name + "_glass", () -> ModSpriteShifts.omni(name+"_glass_casing")))
-					.register();
-		}
+		return 	REGISTRATE
+				.block(newName, factory)
+				.initialProperties(() -> Blocks.GLASS)
+				.transform(glassEncasedShaftBuilder(casing + (!clear ? "_glass" : "_clear_glass"), () -> CCSpriteShifts.omni(casing + (!clear ? "_glass_casing" : "_clear_glass_casing"))))
+				.transform(pickaxeOnly())
 
-		//Builder
-		public static <B extends NewGlassEncasedShaftBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedShaftBuilder(String casing, Supplier<CTSpriteShiftEntry> casingShift) {
-			return builder -> glassencasedBase(builder, AllBlocks.SHAFT::get)
-					.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(casingShift.get())))
-					.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, casingShift.get(),
-							(s, f) -> f.getAxis() != s.getValue(EncasedShaftBlock.AXIS))))
-					.addLayer(() -> RenderType::cutout)
-					.initialProperties(() -> Blocks.GLASS)
-					.blockstate((c, p) -> axisBlock(c, p, blockState -> p.models()
-							.getExistingFile(p.modLoc("block/glass_encased_shaft/block_" + casing)), true))
-					.transform(EncasingRegistry.addVariantTo(AllBlocks.SHAFT))
-					.item()
-					.model(AssetLookup.customBlockItemModel("glass_encased_shaft", "item_" + casing))
-					.build();
-		}
+				.transform(EncasingRegistry.addVariantTo(AllBlocks.SHAFT))
 
+				.register();
+	}
+
+	public static <B extends GlassEncasedShaft, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedShaftBuilder(String casing, Supplier<CTSpriteShiftEntry> ctEntry) {
+		return builder -> glassencasedBase(builder, AllBlocks.SHAFT::get)
+				.addLayer(() -> RenderType::cutout)
+				.onRegister(CreateRegistrate.connectedTextures(() -> new GlassEncasedCTBehaviour(ctEntry.get())))
+				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, ctEntry.get(), (state, face) -> face.getAxis() != state.getValue(GlassEncasedShaft.AXIS))))
+				.blockstate((c, p) -> axisBlock(c, p, blockState -> p.models()
+						.getExistingFile(p.modLoc("block/glass_encased_shaft/block_" + casing)), true))
+				.item()
+				.model(AssetLookup.customBlockItemModel("glass_encased_shaft", "item_" + casing))
+				.build();
+	}
 
 	//Glass Encased Cogwheels
-		//Entry
-		public static BlockEntry<NewGlassEncasedCogwheelBlock> glassEncasedCogwheel(String casingType, Boolean large, Boolean clear, NonNullFunction<Properties, NewGlassEncasedCogwheelBlock> factory){
-			String name = clear? casingType+"_clear" : casingType;
-			return !large?
-				//small cog
-				REGISTRATE
-				.block(name+"_glass_encased_cogwheel", factory)
-				.transform(BlockBuilders.NewGlassEncasedCogwheelBlock(casingType, clear,
-						()-> ModSpriteShifts.omni(name+"_glass_casing")))
-				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(ModSpriteShifts.omni(name+"_glass_casing"),
-						Couple.create(ModSpriteShifts.vertical("encased_cogwheels/" + casingType +"_encased_cogwheel_side"),
-						ModSpriteShifts.horizontal("encased_cogwheels/" + casingType +"_encased_cogwheel_side")))))
-				.register() :
-				//Large Cog
-				REGISTRATE
-				.block(name+ "_glass_encased_large_cogwheel", factory)
-				.transform(BlockBuilders.glassencasedLargeCogwheel(casingType, clear,
-						() -> ModSpriteShifts.omni(name+"_glass_casing")))
-				.register();
-		}
+	//Entry
+	public static BlockEntry<GlassEncasedCogwheel> glassEncasedCogwheel(String casingType, Boolean large, Boolean clear, NonNullFunction<Properties, GlassEncasedCogwheel> factory){
+		String name = clear? casingType+"_clear" : casingType;
+		return !large?
+			//small cog
+			REGISTRATE
+			.block(name+"_glass_encased_cogwheel", factory)
+			.transform(BlockBuilders.glassEncasedSmallCogwheel(casingType, clear,
+					()-> CCSpriteShifts.omni(name+"_glass_casing")))
+			.onRegister(CreateRegistrate.connectedTextures(() -> new GlassEncasedCogCTBehaviour(CCSpriteShifts.omni(name+"_glass_casing"),
+					Couple.create(CCSpriteShifts.vertical("encased_cogwheels/" + casingType +"_encased_cogwheel_side"),
+					CCSpriteShifts.horizontal("encased_cogwheels/" + casingType +"_encased_cogwheel_side")))))
+			.register() :
+			//Large Cog
+			REGISTRATE
+			.block(name+ "_glass_encased_large_cogwheel", factory)
+			.transform(BlockBuilders.glassEncasedLargeCogwheel(casingType, clear,
+					() -> CCSpriteShifts.omni(name+"_glass_casing")))
+			.register();
+	}
 
-		//Builders
-		public static <B extends NewGlassEncasedCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> NewGlassEncasedCogwheelBlock(
-				String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift) {
-			return b -> glassEncasedCogwheelBase(b, casing, clear, casingShift, AllBlocks.COGWHEEL::get, false);
-		}
+	//Builders
+	public static <B extends GlassEncasedCogwheel, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedSmallCogwheel(
+			String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift) {
+		return b -> glassEncasedCogwheelBase(b, casing, clear, casingShift, AllBlocks.COGWHEEL::get, false);
+	}
 
-		public static <B extends NewGlassEncasedCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassencasedLargeCogwheel(
-				String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift) {
-			return b -> glassEncasedCogwheelBase(b, casing, clear, casingShift, AllBlocks.COGWHEEL::get, true)
-				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(casingShift.get())));
-		}
+	public static <B extends GlassEncasedCogwheel, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedLargeCogwheel(
+			String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift) {
+		return b -> glassEncasedCogwheelBase(b, casing, clear, casingShift, AllBlocks.COGWHEEL::get, true)
+			.onRegister(CreateRegistrate.connectedTextures(() -> new GlassEncasedCogCTBehaviour(casingShift.get())));
+	}
 
 	//----------------------------//
 
 	//Glass Encased Cogwheel Base
-	private static <B extends NewGlassEncasedCogwheelBlock, P> BlockBuilder<B, P> glassEncasedCogwheelBase(BlockBuilder<B, P> b,
-	String casingType, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift, Supplier<ItemLike> drop, boolean large) {
+	private static <B extends GlassEncasedCogwheel, P> BlockBuilder<B, P> glassEncasedCogwheelBase(BlockBuilder<B, P> b,
+		String casingType, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift, Supplier<ItemLike> drop, boolean large) {
 
 		String casing = clear? casingType+"_clear_glass" : casingType+"_glass";
 
@@ -180,12 +166,12 @@ public class BlockBuilders {
 				.addLayer(() -> RenderType::cutout)
 				.initialProperties(() -> Blocks.GLASS)
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, casingShift.get(),
-						(s, f) -> f.getAxis() == s.getValue(NewGlassEncasedCogwheelBlock.AXIS)
-								&& !s.getValue(f.getAxisDirection() == Direction.AxisDirection.POSITIVE ? NewGlassEncasedCogwheelBlock.TOP_SHAFT
-								: NewGlassEncasedCogwheelBlock.BOTTOM_SHAFT))))
+						(s, f) -> f.getAxis() == s.getValue(GlassEncasedCogwheel.AXIS)
+								&& !s.getValue(f.getAxisDirection() == Direction.AxisDirection.POSITIVE ? GlassEncasedCogwheel.TOP_SHAFT
+								: GlassEncasedCogwheel.BOTTOM_SHAFT))))
 				.blockstate((c, p) -> axisBlock(c, p, blockState -> {
-					String suffix = (blockState.getValue(NewGlassEncasedCogwheelBlock.TOP_SHAFT) ? "_top" : "")
-							+ (blockState.getValue(NewGlassEncasedCogwheelBlock.BOTTOM_SHAFT) ? "_bottom" : "");
+					String suffix = (blockState.getValue(GlassEncasedCogwheel.TOP_SHAFT) ? "_top" : "")
+							+ (blockState.getValue(GlassEncasedCogwheel.BOTTOM_SHAFT) ? "_bottom" : "");
 					String modelName = c.getName() + suffix;
 				return p.models()
 					.withExistingParent(modelName, p.modLoc("block/" + blockFolder + "/block" + suffix))
@@ -198,7 +184,10 @@ public class BlockBuilders {
 					//Side Casing
 					.texture("side", getSiding(casingType, encasedSuffix));
 				}, false))
-				.transform(EncasingRegistry.addVariantTo(large ? AllBlocks.LARGE_COGWHEEL : AllBlocks.COGWHEEL))
+
+				//Manually register to encasing registry for now TODO: change to utilize the proper way to implement encasing once problems with current system are worked out
+				.transform(EncasingRegistry.addVariantTo(AllBlocks.COGWHEEL))
+
 				.item()
 				.model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + blockFolder + "/item"))
 					.texture("casing", CrystalClear.asResource("block/" + casing + "_casing"))

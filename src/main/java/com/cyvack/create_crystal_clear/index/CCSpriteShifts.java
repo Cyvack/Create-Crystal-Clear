@@ -5,33 +5,9 @@ import com.simibubi.create.foundation.block.connected.AllCTTypes;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
 import com.simibubi.create.foundation.block.connected.CTSpriteShifter;
 import com.simibubi.create.foundation.block.connected.CTType;
-import com.simibubi.create.foundation.data.CreateRegistrate;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 
 
-public class ModSpriteShifts {
-	//Casings
-	public static final CTSpriteShiftEntry
-			ANDESITE_GLASS_CASING = omni("andesite_glass_casing"),
-			BRASS_GLASS_CASING = omni("brass_glass_casing"),
-			COPPER_GLASS_CASING = omni("copper_glass_casing"),
-			TRAIN_GLASS_CASING = omni("train_glass_casing"),
-			STEEL_GLASS_CASING = omni("steel_glass_casing");
-
-	//Clear Glass Casings
-	public static final CTSpriteShiftEntry
-			ANDESITE_CLEAR_GLASS_CASING = omni("andesite_clear_glass_casing"),
-			BRASS_CLEAR_GLASS_CASING = omni("brass_clear_glass_casing"),
-			TRAIN_CLEAR_GLASS_CASING = omni("train_clear_glass_casing"),
-			COPPER_CLEAR_GLASS_CASING = omni("copper_clear_glass_casing");
-
-	//Tinted Glass Casings
-	public static  final CTSpriteShiftEntry
-			STEEL_TINTED_GLASS_CASING = omni("steel_tinted_glass_casing");
-
-
-
+public class CCSpriteShifts {
 
 	//////////////////////
 	public static CTSpriteShiftEntry omni(String name) {
