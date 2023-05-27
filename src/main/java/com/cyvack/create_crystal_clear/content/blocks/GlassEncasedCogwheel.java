@@ -1,6 +1,7 @@
 package com.cyvack.create_crystal_clear.content.blocks;
 
 import com.cyvack.create_crystal_clear.index.CCBlockEntities;
+import com.cyvack.create_crystal_clear.index.GlassUtil;
 import com.simibubi.create.content.decoration.encasing.EncasedBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
@@ -33,9 +34,7 @@ public class GlassEncasedCogwheel extends EncasedCogwheelBlock implements Encase
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean skipRendering(BlockState selfState, BlockState adjacentBlock, Direction side) {
-        boolean passed = adjacentBlock.getBlock() instanceof GlassEncasedCogwheel gec && gec.blockEntryHash == blockEntryHash;;
-
-        return passed;
+        return adjacentBlock.getBlock() instanceof GlassEncasedCogwheel;
     }
 
     @Override

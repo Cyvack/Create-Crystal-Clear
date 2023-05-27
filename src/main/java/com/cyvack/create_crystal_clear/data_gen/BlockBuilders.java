@@ -19,6 +19,8 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Couple;
 import com.tterrag.registrate.builders.BlockBuilder;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
@@ -34,6 +36,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.generators.ModelBuilder;
+import net.minecraftforge.client.model.generators.ModelFile;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -95,7 +99,7 @@ public class BlockBuilders {
 		return 	REGISTRATE
 				.block(newName, factory)
 				.initialProperties(() -> Blocks.GLASS)
-				.transform(glassEncasedShaftBuilder(casing + (!clear ? "_glass" : "_clear_glass"), () -> CCSpriteShifts.omni(casing + (!clear ? "_glass_casing" : "_clear_glass_casing"))))
+				.transform(glassEncasedShaftBuilder(casing, clear, ()  -> CCSpriteShifts.omni(casing + (!clear ? "_glass_casing" : "_clear_glass_casing"))))
 				.transform(pickaxeOnly())
 
 				.transform(EncasingRegistry.addVariantTo(AllBlocks.SHAFT))
@@ -103,17 +107,25 @@ public class BlockBuilders {
 				.register();
 	}
 
-	public static <B extends GlassEncasedShaft, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedShaftBuilder(String casing, Supplier<CTSpriteShiftEntry> ctEntry) {
+	private static <B extends GlassEncasedShaft, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedShaftBuilder(String casing, boolean clear, Supplier<CTSpriteShiftEntry> ctEntry) {
 		return builder -> glassencasedBase(builder, AllBlocks.SHAFT::get)
 				.addLayer(() -> RenderType::cutout)
 				.onRegister(CreateRegistrate.connectedTextures(() -> new GlassEncasedCTBehaviour(ctEntry.get())))
-				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, ctEntry.get(), (state, face) -> face.getAxis() != state.getValue(GlassEncasedShaft.AXIS))))
-				.blockstate((c, p) -> axisBlock(c, p, blockState -> p.models()
-						.getExistingFile(p.modLoc("block/glass_encased_shaft/block_" + casing)), true))
-				.item()
-				.model(AssetLookup.customBlockItemModel("glass_encased_shaft", "item_" + casing))
+				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, ctEntry.get(), (state, face) -> state.getBlock() instanceof GlassEncasedShaft && face.getAxis() != state.getValue(GlassEncasedShaft.AXIS))))
+
+				.blockstate((ctx, prov) -> axisBlock(ctx, prov, state ->
+					prov.models().withExistingParent(ctx.getName(), CrystalClear.asResource("block/glass_encased_shaft/block"))
+					.texture("casing", CrystalClear.asResource("block/" + casing + (clear ? "_clear_glass" : "_glass") + "_casing"))
+					.texture("opening", getOpening(casing)), true))
+
+				.item().model((ctx, prov) ->
+					prov.withExistingParent(ctx.getName(), CrystalClear.asResource("block/glass_encased_shaft/block"))
+					.texture("casing", CrystalClear.asResource("block/" + casing + (clear ? "_clear_glass" : "_glass") + "_casing"))
+					.texture("opening", getOpening(casing)))
+
 				.build();
 	}
+
 
 	//Glass Encased Cogwheels
 	//Entry
@@ -138,12 +150,12 @@ public class BlockBuilders {
 	}
 
 	//Builders
-	public static <B extends GlassEncasedCogwheel, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedSmallCogwheel(
+	private static <B extends GlassEncasedCogwheel, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedSmallCogwheel(
 			String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift) {
 		return b -> glassEncasedCogwheelBase(b, casing, clear, casingShift, AllBlocks.COGWHEEL::get, false);
 	}
 
-	public static <B extends GlassEncasedCogwheel, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedLargeCogwheel(
+	private static <B extends GlassEncasedCogwheel, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassEncasedLargeCogwheel(
 			String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift) {
 		return b -> glassEncasedCogwheelBase(b, casing, clear, casingShift, AllBlocks.COGWHEEL::get, true)
 			.onRegister(CreateRegistrate.connectedTextures(() -> new GlassEncasedCogCTBehaviour(casingShift.get())));
@@ -153,62 +165,82 @@ public class BlockBuilders {
 
 	//Glass Encased Cogwheel Base
 	private static <B extends GlassEncasedCogwheel, P> BlockBuilder<B, P> glassEncasedCogwheelBase(BlockBuilder<B, P> b,
-		String casingType, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift, Supplier<ItemLike> drop, boolean large) {
+		String casing, Boolean clear, Supplier<CTSpriteShiftEntry> casingShift, Supplier<ItemLike> drop, boolean large) {
 
-		String casing = clear? casingType+"_clear_glass" : casingType+"_glass";
-
-		String encasedSuffix = "_encased_cogwheel_side" + (large ? "_connected" : "");
-		String blockFolder = large ? "encased_large_cogwheel" : "encased_cogwheel";
+		String name = clear ? casing+"_clear_glass" : casing + "_glass";
+		String blockFolder = "encased_cogwheel";
 
 		return glassencasedBase(b, drop)
+				.transform(EncasingRegistry.addVariantTo( large ? AllBlocks.LARGE_COGWHEEL : AllBlocks.COGWHEEL))
 				.addLayer(() -> RenderType::cutout)
 				.initialProperties(() -> Blocks.GLASS)
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, casingShift.get(),
-						(s, f) -> f.getAxis() == s.getValue(GlassEncasedCogwheel.AXIS)
-								&& !s.getValue(f.getAxisDirection() == Direction.AxisDirection.POSITIVE ? GlassEncasedCogwheel.TOP_SHAFT
+						(state, f) -> state.getBlock() instanceof GlassEncasedCogwheel && f.getAxis() == state.getValue(GlassEncasedCogwheel.AXIS)
+								&& !state.getValue(f.getAxisDirection() == Direction.AxisDirection.POSITIVE ? GlassEncasedCogwheel.TOP_SHAFT
 								: GlassEncasedCogwheel.BOTTOM_SHAFT))))
 				.blockstate((c, p) -> axisBlock(c, p, blockState -> {
 					String suffix = (blockState.getValue(GlassEncasedCogwheel.TOP_SHAFT) ? "_top" : "")
 							+ (blockState.getValue(GlassEncasedCogwheel.BOTTOM_SHAFT) ? "_bottom" : "");
 					String modelName = c.getName() + suffix;
 				return p.models()
-					.withExistingParent(modelName, p.modLoc("block/" + blockFolder + "/block" + suffix))
-					//Normal Casing
-					.texture("casing", CrystalClear.asResource("block/" + casing + "_casing"))
+				.withExistingParent(modelName, p.modLoc("block/" + blockFolder + "/block" + suffix))
+					//Particle
+					.texture("particle", CrystalClear.asResource("block/" + name + "_casing"))
+					//Casing
+					.texture("casing", CrystalClear.asResource("block/" + name + "_casing"))
 					//Backing
-					.texture("1", getBacking(casingType))
-					//Gearbox
-					.texture(large?"3":"4", casingType.equals("andesite")? Create.asResource("block/gearbox"):getGearbox(casingType+"_"))
+					.texture("backing", getBacking(casing))
+					//Opening
+					.texture("opening", getOpening(casing))
 					//Side Casing
-					.texture("side", getSiding(casingType, encasedSuffix));
+					.texture("siding", getSiding(casing, large));
 				}, false))
-				.transform(EncasingRegistry.addVariantTo( large ? AllBlocks.LARGE_COGWHEEL : AllBlocks.COGWHEEL))
 				.item()
+
 				.model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + blockFolder + "/item"))
-					.texture("casing", CrystalClear.asResource("block/" + casing + "_casing"))
+					.texture("casing", CrystalClear.asResource("block/" + name + "_casing"))
 					//Backing
-					.texture("1", getBacking(casingType))
+					.texture("backing", getBacking(casing))
 					//Gearbox
-					.texture(large?"3":"4", casingType.equals("andesite")? Create.asResource("block/gearbox"):getGearbox(casingType+"_"))
+					.texture("opening", getOpening(casing))
 					//Side Casing
-					.texture("side", getSiding(casingType, encasedSuffix)))
+					.texture("siding", getSiding(casing, large)))
+
 				.build();
 	}
 
-	private static ResourceLocation getBacking(String backing){
-			return backing.equals("andesite")? new ResourceLocation("block/stripped_spruce_log_top") :
-					backing.equals("brass") ? new ResourceLocation("block/stripped_dark_oak_log_top") :
-					CrystalClear.asResource("block/" + backing + "_backing");
+	private static ResourceLocation getBacking(String casing){
+		ResourceLocation texture;
+
+		if (casing.equals("andesite"))
+			texture = new ResourceLocation("block/stripped_spruce_log_top");
+		else if (casing.equals("brass"))
+			texture = new ResourceLocation("block/stripped_dark_oak_log_top");
+		else
+			texture = CrystalClear.asResource("block/" + casing + "_backing");
+
+		return texture;
 	}
 
-	private static ResourceLocation getGearbox(String opening){
-			return 	opening.equals("brass_") ?
-					Create.asResource("block/" + opening + "gearbox") :
-					CrystalClear.asResource("block/" + opening + "gearbox");
+	private static ResourceLocation getOpening(String casing){
+		ResourceLocation texture;
+
+		if (casing.equals("andesite"))
+			texture = Create.asResource("block/gearbox");
+		else if (casing.equals("brass"))
+			texture = Create.asResource("block/brass_gearbox");
+		else
+			texture = CrystalClear.asResource("block/" + casing + "_gearbox");
+
+		return texture;
 	}
 
-	private static ResourceLocation getSiding(String siding, String encasedSuffix){
-		return CrystalClear.asResource("block/encased_cogwheels/" + siding + encasedSuffix);
+	private static ResourceLocation getSiding(String casing, boolean large){
+		ResourceLocation texture;
+
+		texture = CrystalClear.asResource("block/encased_cogwheels/" + (large ? "large_" : "") + casing + "_encased_cogwheel_side");
+
+		return texture;
 	}
 
 	private static <B extends RotatedPillarKineticBlock, P> BlockBuilder<B, P> glassencasedBase(BlockBuilder<B, P> b, Supplier<ItemLike> drop) {

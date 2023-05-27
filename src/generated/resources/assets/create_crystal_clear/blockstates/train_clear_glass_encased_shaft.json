@@ -1,17 +1,17 @@
 {
   "variants": {
     "axis=x": {
-      "model": "create_crystal_clear:block/glass_encased_shaft/block_train_clear_glass",
+      "model": "create_crystal_clear:block/train_clear_glass_encased_shaft",
       "uvlock": true,
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "create_crystal_clear:block/glass_encased_shaft/block_train_clear_glass",
+      "model": "create_crystal_clear:block/train_clear_glass_encased_shaft",
       "uvlock": true
     },
     "axis=z": {
-      "model": "create_crystal_clear:block/glass_encased_shaft/block_train_clear_glass",
+      "model": "create_crystal_clear:block/train_clear_glass_encased_shaft",
       "uvlock": true,
       "x": 90,
       "y": 180

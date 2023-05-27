@@ -1,6 +1,7 @@
 package com.cyvack.create_crystal_clear.content.blocks;
 
 import com.cyvack.create_crystal_clear.index.CCBlockEntities;
+import com.cyvack.create_crystal_clear.index.GlassUtil;
 import com.simibubi.create.content.decoration.encasing.EncasedBlock;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedShaftBlock;
@@ -34,9 +35,7 @@ public class GlassEncasedShaft extends EncasedShaftBlock implements EncasedBlock
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean skipRendering(BlockState selfState, BlockState adjacentBlock, Direction side) {
-        boolean passed = adjacentBlock.getBlock() instanceof GlassEncasedShaft ges && ges.blockEntryHash == blockEntryHash;
-
-        return passed;
+        return GlassUtil.checkForGlassBlock(adjacentBlock);
     }
 
     @Override
