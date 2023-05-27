@@ -1,9 +1,10 @@
 {
   "parent": "create_crystal_clear:block/encased_cogwheel/block_bottom",
   "textures": {
+    "particle": "create_crystal_clear:block/andesite_clear_glass_casing",
     "casing": "create_crystal_clear:block/andesite_clear_glass_casing",
-    "1": "minecraft:block/stripped_spruce_log_top",
-    "4": "create:block/gearbox",
-    "side": "create_crystal_clear:block/encased_cogwheels/andesite_encased_cogwheel_side"
+    "backing": "minecraft:block/stripped_spruce_log_top",
+    "opening": "create:block/gearbox",
+    "siding": "create_crystal_clear:block/encased_cogwheels/andesite_encased_cogwheel_side"
   }
 }
